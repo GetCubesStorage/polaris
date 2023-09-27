@@ -1,5 +1,18 @@
 # Changelog
 
+## 12.0.0-beta.2
+
+### Minor Changes
+
+- [#10727](https://github.com/Shopify/polaris/pull/10727) [`179b481d7`](https://github.com/Shopify/polaris/commit/179b481d745c9e69880bd31cca409071ddf1845d) Thanks [@laurkim](https://github.com/laurkim)! - Migrated `space` custom properties from v11 to v12
+
+* [#10709](https://github.com/Shopify/polaris/pull/10709) [`7dabebed6`](https://github.com/Shopify/polaris/commit/7dabebed6dfd874cc7eecea0a0f7166c88dcddfa) Thanks [@mrcthms](https://github.com/mrcthms)! - - Updated the `TextField` to automatically set password manager disable data attributes when `autoComplete` is set to "off"
+  - Deprecated the `TextField` `disable1Password` prop
+
+### Patch Changes
+
+- [#10711](https://github.com/Shopify/polaris/pull/10711) [`40d1672cd`](https://github.com/Shopify/polaris/commit/40d1672cd36fd75a9dd282c12b969654330072e6) Thanks [@maael](https://github.com/maael)! - Fixed issue with setting local pinned filters in `Filters` when no `appliedFilters` were provided.
+
 ## 12.0.0-beta.1
 
 ### Major Changes
