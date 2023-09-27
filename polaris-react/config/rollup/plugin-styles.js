@@ -1,6 +1,6 @@
 const path = require('path');
 
-const {createFilter} = require('@rollup/pluginutils');
+const { createFilter } = require('@rollup/pluginutils');
 const nodeSass = require('node-sass');
 const postcss = require('postcss');
 const cssModules = require('postcss-modules');
@@ -12,6 +12,7 @@ module.exports.styles = function styles({
   mode,
   include = ['**/*.css', '**/*.scss'],
   exclude = [],
+  outputStyle = 'compact'
 } = {}) {
   if (!['standalone', 'esnext'].includes(mode)) {
     throw new Error(
@@ -25,7 +26,7 @@ module.exports.styles = function styles({
     cssModules({
       ...modules,
       // eslint-disable-next-line no-empty-function
-      getJSON() {},
+      getJSON() { },
     }),
     ...plugins,
   ]);
@@ -120,13 +121,13 @@ module.exports.styles = function styles({
     }
 
     // Regular css file
-    rollup.emitFile({type: 'asset', fileName: output, source: css});
+    rollup.emitFile({ type: 'asset', fileName: output, source: css });
   }
 
   return {
     name: 'styles',
 
-    buildStart({input}) {
+    buildStart({ input }) {
       inputRoot = path.resolve(process.cwd(), path.dirname(input[0]));
     },
 
@@ -152,7 +153,7 @@ module.exports.styles = function styles({
           .renderSync({
             data: source,
             file: id,
-            outputStyle: 'compact',
+            outputStyle,
             includePaths: [path.dirname(id)],
           })
           .css.toString();
@@ -161,10 +162,10 @@ module.exports.styles = function styles({
       }
 
       const postCssOutput = await styleProcessor
-        .process(sassOutput, {from: id})
+        .process(sassOutput, { from: id })
         .then((result) => ({
           css: result.css,
-          tokens: result.messages.find(({plugin, type}) => {
+          tokens: result.messages.find(({ plugin, type }) => {
             return plugin === 'postcss-modules' && type === 'export';
           }).exportTokens,
         }));

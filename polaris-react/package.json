@@ -53,7 +53,8 @@
     "start": "serve ./build-internal/storybook/static -l ${PORT:=6006}",
     "storybook": "start-storybook -p 6006 --quiet",
     "storybook:build": "build-storybook -o build-internal/storybook/static",
-    "preversion": "node ./scripts/readme-update-version"
+    "preversion": "node ./scripts/readme-update-version",
+    "build:react": "rollup -c && tsc -b && cp -r ./build/esm/* ./build/ts/src"
   },
   "dependencies": {
     "@shopify/polaris-icons": "^7.9.0",
