@@ -47,7 +47,7 @@ export interface RowProps {
   onClick?(): void;
 }
 
-export const Row = memo(function Row({
+export function useRow({
   children,
   selected,
   id,
@@ -61,7 +61,7 @@ export const Row = memo(function Row({
   onNavigation,
   onClick,
 }: RowProps) {
-  const {selectable, selectMode, condensed} = useIndexRow();
+  const {selectable, selectMode, condensed, hideCheckbox} = useIndexRow();
   const onSelectionChange = useIndexSelectionChange();
   const {
     value: hovered,
@@ -123,8 +123,8 @@ export const Row = memo(function Row({
     disabled && styles['TableRow-disabled'],
     status && styles[variationName('status', status)],
     !selectable &&
-      !primaryLinkElement.current &&
-      styles['TableRow-unclickable'],
+    !primaryLinkElement.current &&
+    styles['TableRow-unclickable'],
   );
 
   let handleRowClick;
@@ -176,6 +176,40 @@ export const Row = memo(function Row({
     <Checkbox accessibilityLabel={accessibilityLabel} />
   ) : null;
 
+  return {
+    contextValue,
+    hovered,
+    RowWrapper,
+    id,
+    rowClassName,
+    setHoverIn,
+    setHoverOut,
+    handleRowClick,
+    tableRowCallbackRef,
+    checkboxMarkup,
+    children,
+    hideCheckbox,
+  } as const;
+
+}
+
+export const Row = memo(function Row(props: RowProps) {
+
+  const {
+    contextValue,
+    hovered,
+    RowWrapper,
+    id,
+    rowClassName,
+    setHoverIn,
+    setHoverOut,
+    handleRowClick,
+    tableRowCallbackRef,
+    checkboxMarkup,
+    children,
+    hideCheckbox,
+  } = useRow(props);
+
   return (
     <RowContext.Provider value={contextValue}>
       <RowHoveredContext.Provider value={hovered}>
@@ -188,7 +222,7 @@ export const Row = memo(function Row({
           onClick={handleRowClick}
           ref={tableRowCallbackRef}
         >
-          {checkboxMarkup}
+          {hideCheckbox ? null : checkboxMarkup}
           {children}
         </RowWrapper>
       </RowHoveredContext.Provider>

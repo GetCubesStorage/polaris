@@ -15,6 +15,7 @@ export type Range = [number, number];
 export interface IndexProviderProps {
   children?: React.ReactNode;
   selectable?: boolean;
+  hideCheckbox?: boolean;
   itemCount: number;
   selectedItemsCount?: typeof SELECT_ALL_ITEMS | number;
   resourceName?: {

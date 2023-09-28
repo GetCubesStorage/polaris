@@ -19,6 +19,7 @@ export function IndexProvider({
   hasMoreItems,
   condensed,
   selectable: isSelectableIndex = true,
+  hideCheckbox,
 }: IndexProviderProps) {
   const {
     paginatedSelectAllText,
@@ -71,8 +72,9 @@ export function IndexProvider({
       selectable: isSelectableIndex,
       selectMode: selectMode && isSelectableIndex,
       condensed,
+      hideCheckbox
     }),
-    [condensed, selectMode, isSelectableIndex],
+    [condensed, selectMode, isSelectableIndex, hideCheckbox],
   );
 
   return (

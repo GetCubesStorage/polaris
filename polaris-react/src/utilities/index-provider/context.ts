@@ -37,6 +37,7 @@ export interface IndexRowContextType {
   selectable: boolean;
   selectMode: boolean;
   condensed?: boolean;
+  hideCheckbox?: boolean;
 }
 
 export const IndexRowContext = createContext<IndexRowContextType | undefined>(
