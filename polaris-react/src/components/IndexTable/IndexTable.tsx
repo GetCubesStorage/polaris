@@ -1,47 +1,47 @@
-import React, {useRef, useState, useEffect, useCallback, useMemo} from 'react';
-import {SortAscendingMajor, SortDescendingMajor} from '@shopify/polaris-icons';
-import {CSSTransition} from 'react-transition-group';
-import {tokens, toPx, motion} from '@shopify/polaris-tokens';
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
+import { SortAscendingMajor, SortDescendingMajor } from '@shopify/polaris-icons';
+import { CSSTransition } from 'react-transition-group';
+import { tokens, toPx, motion } from '@shopify/polaris-tokens';
 
-import {debounce} from '../../utilities/debounce';
-import {useToggle} from '../../utilities/use-toggle';
-import {useIsomorphicLayoutEffect} from '../../utilities/use-isomorphic-layout-effect';
-import {useI18n} from '../../utilities/i18n';
-import {Badge} from '../Badge';
-import {Checkbox as PolarisCheckbox} from '../Checkbox';
-import {EmptySearchResult} from '../EmptySearchResult';
+import { debounce } from '../../utilities/debounce';
+import { useToggle } from '../../utilities/use-toggle';
+import { useIsomorphicLayoutEffect } from '../../utilities/use-isomorphic-layout-effect';
+import { useI18n } from '../../utilities/i18n';
+import { Badge } from '../Badge';
+import { Checkbox as PolarisCheckbox } from '../Checkbox';
+import { EmptySearchResult } from '../EmptySearchResult';
 // eslint-disable-next-line import/no-deprecated
-import {EventListener} from '../EventListener';
-import {SelectAllActions} from '../SelectAllActions';
-import {LegacyStack} from '../LegacyStack';
-import {Sticky} from '../Sticky';
-import {Spinner} from '../Spinner';
-import {Text} from '../Text';
-import {Tooltip} from '../Tooltip';
-import {UnstyledButton} from '../UnstyledButton';
-import {BulkActions, useIsBulkActionsSticky} from '../BulkActions';
-import type {BulkActionsProps} from '../BulkActions';
-import {classNames} from '../../utilities/css';
+import { EventListener } from '../EventListener';
+import { SelectAllActions } from '../SelectAllActions';
+import { LegacyStack } from '../LegacyStack';
+import { Sticky } from '../Sticky';
+import { Spinner } from '../Spinner';
+import { Text } from '../Text';
+import { Tooltip } from '../Tooltip';
+import { UnstyledButton } from '../UnstyledButton';
+import { BulkActions, useIsBulkActionsSticky } from '../BulkActions';
+import type { BulkActionsProps } from '../BulkActions';
+import { classNames } from '../../utilities/css';
 import {
   useIndexValue,
   useIndexSelectionChange,
   SELECT_ALL_ITEMS,
   SelectionType,
 } from '../../utilities/index-provider';
-import type {IndexProviderProps} from '../../utilities/index-provider';
-import {AfterInitialMount} from '../AfterInitialMount';
-import {IndexProvider} from '../IndexProvider';
-import type {NonEmptyArray} from '../../types';
+import type { IndexProviderProps } from '../../utilities/index-provider';
+import { AfterInitialMount } from '../AfterInitialMount';
+import { IndexProvider } from '../IndexProvider';
+import type { NonEmptyArray } from '../../types';
 import type {
   BorderRadius,
   Padding,
   Width,
   TooltipOverlayProps,
 } from '../Tooltip';
-import {useFeatures} from '../../utilities/features';
+import { useFeatures } from '../../utilities/features';
 
-import {getTableHeadingsBySelector} from './utilities';
-import {ScrollContainer, Cell, Row} from './components';
+import { getTableHeadingsBySelector } from './utilities';
+import { ScrollContainer, Cell, Row } from './components';
 import styles from './IndexTable.scss';
 
 interface IndexTableHeadingBase {
@@ -153,21 +153,22 @@ function IndexTableBase({
     resourceName,
     bulkActionsAccessibilityLabel,
     selectMode,
-    selectable = restProps.selectable && !restProps.hideCheckbox,
+    hideCheckbox = restProps.hideCheckbox,
+    selectable = restProps.selectable,
     paginatedSelectAllText,
     itemCount,
     hasMoreItems,
     selectedItemsCount,
     condensed,
   } = useIndexValue();
-  const {polarisSummerEditions2023} = useFeatures();
+  const { polarisSummerEditions2023 } = useFeatures();
   const handleSelectionChange = useIndexSelectionChange();
   const i18n = useI18n();
 
-  const {value: hasMoreLeftColumns, toggle: toggleHasMoreLeftColumns} =
+  const { value: hasMoreLeftColumns, toggle: toggleHasMoreLeftColumns } =
     useToggle(false);
 
-  const tablePosition = useRef({top: 0, left: 0});
+  const tablePosition = useRef({ top: 0, left: 0 });
   const tableHeadingRects = useRef<TableHeadingRect[]>([]);
 
   const scrollableContainerElement = useRef<HTMLDivElement>(null);
@@ -236,7 +237,7 @@ function IndexTableBase({
   }, [handleSelectionChange, selectedItemsCount]);
 
   const calculateFirstHeaderOffset = useCallback(() => {
-    if (!selectable) {
+    if (!selectable || hideCheckbox) {
       return tableHeadingRects.current[0].offsetWidth;
     }
 
@@ -244,7 +245,7 @@ function IndexTableBase({
       ? tableHeadingRects.current[0].offsetWidth
       : tableHeadingRects.current[0].offsetWidth +
       tableHeadingRects.current[1].offsetWidth;
-  }, [condensed, selectable]);
+  }, [condensed, selectable, hideCheckbox]);
 
   const resizeTableHeadings = useMemo(
     () =>
@@ -270,12 +271,12 @@ function IndexTableBase({
         }
 
         // update left offset for first column
-        if (selectable && tableHeadings.current.length > 1)
+        if (selectable && !hideCheckbox && tableHeadings.current.length > 1)
           tableHeadings.current[1].style.left = `${tableHeadingRects.current[0].offsetWidth}px`;
 
         // update the min width of the checkbox to be the be the un-padded width of the first heading
         if (
-          selectable &&
+          selectable && !hideCheckbox &&
           firstStickyHeaderElement?.current &&
           !polarisSummerEditions2023
         ) {
@@ -287,18 +288,18 @@ function IndexTableBase({
         // update sticky header min-widths
         stickyTableHeadings.current.forEach((heading, index) => {
           let minWidth = 0;
-          if (index === 0 && (!isBreakpointsXS() || !selectable)) {
+          if (index === 0 && (!isBreakpointsXS() || !selectable || hideCheckbox)) {
             minWidth = calculateFirstHeaderOffset();
-          } else if (selectable && tableHeadingRects.current.length > index) {
+          } else if (selectable && !hideCheckbox && tableHeadingRects.current.length > index) {
             minWidth = tableHeadingRects.current[index]?.offsetWidth || 0;
-          } else if (!selectable && tableHeadingRects.current.length >= index) {
+          } else if ((!selectable || hideCheckbox) && tableHeadingRects.current.length >= index) {
             minWidth = tableHeadingRects.current[index - 1]?.offsetWidth || 0;
           }
 
           heading.style.minWidth = `${minWidth}px`;
         });
       }),
-    [calculateFirstHeaderOffset, selectable, polarisSummerEditions2023],
+    [calculateFirstHeaderOffset, selectable, hideCheckbox, polarisSummerEditions2023],
   );
 
   const resizeTableScrollBar = useCallback(() => {
@@ -357,12 +358,12 @@ function IndexTableBase({
     }
     const scrollableRect =
       scrollableContainerElement.current.getBoundingClientRect();
-    const checkboxColumnWidth = selectable
+    const checkboxColumnWidth = selectable && !hideCheckbox
       ? tableHeadings.current[0].getBoundingClientRect().width
       : 0;
     const firstStickyColumnWidth =
-      tableHeadings.current[selectable ? 1 : 0].getBoundingClientRect().width;
-    const lastColumnIsNotTheFirst = selectable
+      tableHeadings.current[selectable && !hideCheckbox ? 1 : 0].getBoundingClientRect().width;
+    const lastColumnIsNotTheFirst = selectable && !hideCheckbox
       ? tableHeadings.current.length > 2
       : 1;
     // Don't consider the last column in the calculations if it's not sticky
@@ -381,7 +382,7 @@ function IndexTableBase({
       lastStickyColumnWidth +
       restOfContentMinWidth,
     );
-  }, [lastColumnSticky, selectable]);
+  }, [lastColumnSticky, selectable, hideCheckbox]);
 
   useEffect(() => {
     if (tableInitialized) {
@@ -498,7 +499,7 @@ function IndexTableBase({
     <div
       className={classNames(
         styles.TableHeading,
-        polarisSummerEditions2023 && selectable && styles['TableHeading-first'],
+        polarisSummerEditions2023 && selectable && !hideCheckbox && styles['TableHeading-first'],
         polarisSummerEditions2023 &&
         headings[0].flush &&
         styles['TableHeading-flush'],
@@ -508,7 +509,7 @@ function IndexTableBase({
       data-index-table-sticky-heading
     >
       <LegacyStack spacing="none" wrap={false} alignment="center">
-        {selectable && (
+        {selectable && !hideCheckbox && (
           <div
             className={styles.FirstStickyHeaderElement}
             ref={firstStickyHeaderElement}
@@ -517,13 +518,13 @@ function IndexTableBase({
           </div>
         )}
 
-        {selectable && (
+        {selectable && !hideCheckbox && (
           <div className={styles['StickyTableHeading-second-scrolling']}>
             {renderHeadingContent(headings[0], 0)}
           </div>
         )}
 
-        {!selectable && (
+        {!selectable && !hideCheckbox && (
           <div
             className={classNames(styles.FirstStickyHeaderElement)}
             ref={firstStickyHeaderElement}
@@ -660,7 +661,7 @@ function IndexTableBase({
             <div
               className={classNames(
                 styles.HeaderWrapper,
-                (!selectable || condensed) && styles.unselectable,
+                (!selectable || hideCheckbox || condensed) && styles.unselectable,
               )}
             >
               {loadingMarkup}
@@ -728,7 +729,7 @@ function IndexTableBase({
     hasMoreLeftColumns && styles['Table-scrolling'],
     selectMode && styles.disableTextSelection,
     selectMode && shouldShowBulkActions && styles.selectMode,
-    !selectable && styles['Table-unselectable'],
+    (!selectable || hideCheckbox) && styles['Table-unselectable'],
     canFitStickyColumn && styles['Table-sticky'],
     isSortable && styles['Table-sortable'],
     canFitStickyColumn && lastColumnSticky && styles['Table-sticky-last'],
@@ -830,16 +831,16 @@ function IndexTableBase({
       hasSortable && styles['TableHeading-sortable'],
       isSecond && styles['TableHeading-second'],
       isLast && !heading.hidden && styles['TableHeading-last'],
-      !selectable && styles['TableHeading-unselectable'],
+      (!selectable || hideCheckbox) && styles['TableHeading-unselectable'],
       heading.flush && styles['TableHeading-flush'],
     );
 
     const stickyPositioningStyle =
-      selectable !== false &&
+      selectable !== false && !hideCheckbox &&
         isSecond &&
         tableHeadingRects.current &&
         tableHeadingRects.current.length > 0
-        ? {left: tableHeadingRects.current[0].offsetWidth}
+        ? { left: tableHeadingRects.current[0].offsetWidth }
         : undefined;
 
     const headingContent = (
@@ -854,7 +855,7 @@ function IndexTableBase({
       </th>
     );
 
-    if (index !== 0 || !selectable) {
+    if (index !== 0 || !selectable || hideCheckbox) {
       return headingContent;
     }
 
@@ -1092,7 +1093,7 @@ function IndexTableBase({
     const position = index + 1;
     const headingStyle =
       tableHeadingRects.current && tableHeadingRects.current.length > position
-        ? {minWidth: tableHeadingRects.current[position].offsetWidth}
+        ? { minWidth: tableHeadingRects.current[position].offsetWidth }
         : undefined;
     const headingAlignment = heading.alignment || 'start';
 
@@ -1105,7 +1106,7 @@ function IndexTableBase({
       headingAlignment === 'center' && styles['TableHeading-align-center'],
       headingAlignment === 'end' && styles['TableHeading-align-end'],
       index === 0 && styles['StickyTableHeading-second'],
-      index === 0 && !selectable && styles.unselectable,
+      index === 0 && (!selectable || hideCheckbox) && styles.unselectable,
     );
 
     return (
@@ -1167,11 +1168,12 @@ function getHeadingKey(heading: IndexTableHeading): string {
 
 export interface IndexTableProps
   extends IndexTableBaseProps,
-    IndexProviderProps {}
+  IndexProviderProps { }
 
 export function IndexTable({
   children,
   selectable = true,
+  hideCheckbox,
   itemCount,
   selectedItemsCount = 0,
   resourceName: passedResourceName,
@@ -1179,12 +1181,12 @@ export function IndexTable({
   hasMoreItems,
   condensed,
   onSelectionChange,
-  hideCheckbox,
   ...indexTableBaseProps
 }: IndexTableProps) {
   return (
     <IndexProvider
       selectable={selectable && !condensed}
+      hideCheckbox={hideCheckbox}
       itemCount={itemCount}
       selectedItemsCount={selectedItemsCount}
       resourceName={passedResourceName}
@@ -1192,7 +1194,6 @@ export function IndexTable({
       hasMoreItems={hasMoreItems}
       condensed={condensed}
       onSelectionChange={onSelectionChange}
-      hideCheckbox={hideCheckbox}
     >
       <IndexTableBase {...indexTableBaseProps}>{children}</IndexTableBase>
     </IndexProvider>

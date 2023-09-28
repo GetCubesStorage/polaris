@@ -15,6 +15,7 @@ export interface IndexContextType {
   paginatedSelectAllText?: string;
   itemCount: number;
   selectable?: boolean;
+  hideCheckbox?: boolean;
   hasMoreItems?: boolean;
   condensed?: boolean;
 }
