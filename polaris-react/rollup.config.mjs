@@ -79,25 +79,31 @@ export default [
         preserveModules: true,
         entryFileNames: '[name].js',
       },
-    ],
-  }),
-  generateConfig({
-    targets: 'last 1 chrome versions',
-    stylesConfig: {
-      mode: 'esnext',
-      modules: {
-        generateScopedName: generateScopedName({ includeHash: true }),
-        globalModulePaths: [/global\.scss$/],
-      },
-      plugins: postcssPlugins,
-    },
-    output: [
       {
         format: 'esm',
-        dir: path.dirname(pkg.esnext),
+        dir: path.dirname(pkg.types),
         preserveModules: true,
-        entryFileNames: '[name].esnext',
+        entryFileNames: '[name].js',
       },
     ],
   }),
+  // generateConfig({
+  //   targets: 'last 1 chrome versions',
+  //   stylesConfig: {
+  //     mode: 'esnext',
+  //     modules: {
+  //       generateScopedName: generateScopedName({ includeHash: true }),
+  //       globalModulePaths: [/global\.scss$/],
+  //     },
+  //     plugins: postcssPlugins,
+  //   },
+  //   output: [
+  //     {
+  //       format: 'esm',
+  //       dir: path.dirname(pkg.esnext),
+  //       preserveModules: true,
+  //       entryFileNames: '[name].esnext',
+  //     },
+  //   ],
+  // }),
 ];
