@@ -117,3 +117,20 @@ export const purple: Color = {
   800: 'rgba(49, 13, 120, 1)',
   900: 'rgba(36, 8, 73, 1)',
 };
+
+function keys<T extends {}>(a: T): (keyof T)[] {
+  return Object.keys(a as any) as any;
+}
+if (false && !(globalThis as any)["window"]) {
+
+  keys(exports).forEach((k) => {
+    const arr = keys(exports[k]);
+    const rev = keys(exports[k]).reverse();
+    const res: any = {};
+    arr.forEach((_e, i) => {
+      res[rev[i]] = exports[k][arr[i]];
+    });
+    Object.assign(exports[k], res);
+  });
+  console.log(keys(exports));
+}

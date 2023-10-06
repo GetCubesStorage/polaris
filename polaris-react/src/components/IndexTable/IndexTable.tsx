@@ -661,7 +661,7 @@ function IndexTableBase({
             <div
               className={classNames(
                 styles.HeaderWrapper,
-                (!selectable || hideCheckbox || condensed) && styles.unselectable,
+                (!selectable || condensed) && styles.unselectable,
               )}
             >
               {loadingMarkup}
@@ -729,7 +729,7 @@ function IndexTableBase({
     hasMoreLeftColumns && styles['Table-scrolling'],
     selectMode && styles.disableTextSelection,
     selectMode && shouldShowBulkActions && styles.selectMode,
-    (!selectable || hideCheckbox) && styles['Table-unselectable'],
+    (!selectable) && styles['Table-unselectable'],
     canFitStickyColumn && styles['Table-sticky'],
     isSortable && styles['Table-sortable'],
     canFitStickyColumn && lastColumnSticky && styles['Table-sticky-last'],
@@ -831,7 +831,7 @@ function IndexTableBase({
       hasSortable && styles['TableHeading-sortable'],
       isSecond && styles['TableHeading-second'],
       isLast && !heading.hidden && styles['TableHeading-last'],
-      (!selectable || hideCheckbox) && styles['TableHeading-unselectable'],
+      (!selectable) && styles['TableHeading-unselectable'],
       heading.flush && styles['TableHeading-flush'],
     );
 
@@ -1106,7 +1106,7 @@ function IndexTableBase({
       headingAlignment === 'center' && styles['TableHeading-align-center'],
       headingAlignment === 'end' && styles['TableHeading-align-end'],
       index === 0 && styles['StickyTableHeading-second'],
-      index === 0 && (!selectable || hideCheckbox) && styles.unselectable,
+      index === 0 && (!selectable) && styles.unselectable,
     );
 
     return (
