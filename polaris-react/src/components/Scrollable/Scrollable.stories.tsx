@@ -7,7 +7,7 @@ import {
   Banner,
   Box,
   Text,
-  VerticalStack,
+  BlockStack,
   FormLayout,
   TextField,
 } from '@shopify/polaris';
@@ -1170,7 +1170,7 @@ export function UsingInstantScrollToFromRef() {
 
 export function WithShadowOverComplexChildren() {
   return (
-    <VerticalStack gap="400">
+    <BlockStack gap="400">
       <Text as="p" variant="bodyLg" fontWeight="bold">
         NOTE: Red shadow is for demo/debug purposes only.
         <br />
@@ -1181,7 +1181,7 @@ export function WithShadowOverComplexChildren() {
         style={{
           height: '200px',
           maxWidth: '40rem',
-          backgroundColor: 'var(--p-color-bg)',
+          backgroundColor: 'var(--p-color-bg-surface)',
           // Setting red here so the storybook is really obvious that the shadow
           // overlays the content (particularly the banner)
           /* @ts-expect-error TS doesn't understand CSS vars */
@@ -1293,6 +1293,6 @@ export function WithShadowOverComplexChildren() {
           </p>
         </Box>
       </Scrollable>
-    </VerticalStack>
+    </BlockStack>
   );
 }

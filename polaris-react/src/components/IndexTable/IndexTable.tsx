@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import { SortAscendingMajor, SortDescendingMajor } from '@shopify/polaris-icons';
-import { CSSTransition } from 'react-transition-group';
-import { tokens, toPx, motion } from '@shopify/polaris-tokens';
+import React, {useRef, useState, useEffect, useCallback, useMemo} from 'react';
+import {SortAscendingMajor, SortDescendingMajor} from '@shopify/polaris-icons';
+import {CSSTransition} from 'react-transition-group';
+import {themeDefault, toPx} from '@shopify/polaris-tokens';
 
 import { debounce } from '../../utilities/debounce';
 import { useToggle } from '../../utilities/use-toggle';
@@ -11,17 +11,18 @@ import { Badge } from '../Badge';
 import { Checkbox as PolarisCheckbox } from '../Checkbox';
 import { EmptySearchResult } from '../EmptySearchResult';
 // eslint-disable-next-line import/no-deprecated
-import { EventListener } from '../EventListener';
-import { SelectAllActions } from '../SelectAllActions';
-import { LegacyStack } from '../LegacyStack';
-import { Sticky } from '../Sticky';
-import { Spinner } from '../Spinner';
-import { Text } from '../Text';
-import { Tooltip } from '../Tooltip';
-import { UnstyledButton } from '../UnstyledButton';
-import { BulkActions, useIsBulkActionsSticky } from '../BulkActions';
-import type { BulkActionsProps } from '../BulkActions';
-import { classNames } from '../../utilities/css';
+import {EventListener} from '../EventListener';
+import {SelectAllActions} from '../SelectAllActions';
+// eslint-disable-next-line import/no-deprecated
+import {LegacyStack} from '../LegacyStack';
+import {Sticky} from '../Sticky';
+import {Spinner} from '../Spinner';
+import {Text} from '../Text';
+import {Tooltip} from '../Tooltip';
+import {UnstyledButton} from '../UnstyledButton';
+import {BulkActions, useIsBulkActionsSticky} from '../BulkActions';
+import type {BulkActionsProps} from '../BulkActions';
+import {classNames} from '../../utilities/css';
 import {
   useIndexValue,
   useIndexSelectionChange,
@@ -38,7 +39,7 @@ import type {
   Width,
   TooltipOverlayProps,
 } from '../Tooltip';
-import { useFeatures } from '../../utilities/features';
+import {useTheme} from '../../utilities/use-theme';
 
 import { getTableHeadingsBySelector } from './utilities';
 import { ScrollContainer, Cell, Row } from './components';
@@ -147,6 +148,8 @@ function IndexTableBase({
   hasZebraStriping,
   ...restProps
 }: IndexTableBaseProps) {
+  const theme = useTheme();
+
   const {
     loading,
     bulkSelectState,
@@ -161,7 +164,6 @@ function IndexTableBase({
     selectedItemsCount,
     condensed,
   } = useIndexValue();
-  const { polarisSummerEditions2023 } = useFeatures();
   const handleSelectionChange = useIndexSelectionChange();
   const i18n = useI18n();
 
@@ -274,17 +276,6 @@ function IndexTableBase({
         if (selectable && !hideCheckbox && tableHeadings.current.length > 1)
           tableHeadings.current[1].style.left = `${tableHeadingRects.current[0].offsetWidth}px`;
 
-        // update the min width of the checkbox to be the be the un-padded width of the first heading
-        if (
-          selectable && !hideCheckbox &&
-          firstStickyHeaderElement?.current &&
-          !polarisSummerEditions2023
-        ) {
-          const elementStyle = getComputedStyle(tableHeadings.current[0]);
-          const boxWidth = tableHeadings.current[0].offsetWidth;
-          firstStickyHeaderElement.current.style.minWidth = `calc(${boxWidth}px - ${elementStyle.paddingLeft} - ${elementStyle.paddingRight} + 2px)`;
-        }
-
         // update sticky header min-widths
         stickyTableHeadings.current.forEach((heading, index) => {
           let minWidth = 0;
@@ -299,7 +290,7 @@ function IndexTableBase({
           heading.style.minWidth = `${minWidth}px`;
         });
       }),
-    [calculateFirstHeaderOffset, selectable, hideCheckbox, polarisSummerEditions2023],
+    [calculateFirstHeaderOffset, selectable, hideCheckbox],
   );
 
   const resizeTableScrollBar = useCallback(() => {
@@ -499,10 +490,8 @@ function IndexTableBase({
     <div
       className={classNames(
         styles.TableHeading,
-        polarisSummerEditions2023 && selectable && !hideCheckbox && styles['TableHeading-first'],
-        polarisSummerEditions2023 &&
-        headings[0].flush &&
-        styles['TableHeading-flush'],
+        selectable && !hideCheckbox && styles['TableHeading-first'],
+        headings[0].flush && styles['TableHeading-flush'],
       )}
       key={getHeadingKey(headings[0])}
       style={stickyColumnHeaderStyle}
@@ -562,7 +551,7 @@ function IndexTableBase({
     <CSSTransition
       in={loading}
       classNames={loadingTransitionClassNames}
-      timeout={parseInt(motion['motion-duration-100'], 10)}
+      timeout={parseInt(theme.motion['motion-duration-100'], 10)}
       nodeRef={loadingElement}
       appear
       unmountOnExit
@@ -925,7 +914,7 @@ function IndexTableBase({
       headingContent = (
         <LegacyStack wrap={false} alignment="center">
           <span>{heading.title}</span>
-          <Badge status="new">
+          <Badge tone="new">
             {i18n.translate('Polaris.IndexTable.onboardingBadgeText')}
           </Badge>
         </LegacyStack>
@@ -1100,9 +1089,7 @@ function IndexTableBase({
     const headingContent = renderHeadingContent(heading, index);
     const stickyHeadingClassName = classNames(
       styles.TableHeading,
-      polarisSummerEditions2023 &&
-      heading.flush &&
-      styles['TableHeading-flush'],
+      heading.flush && styles['TableHeading-flush'],
       headingAlignment === 'center' && styles['TableHeading-align-center'],
       headingAlignment === 'end' && styles['TableHeading-align-end'],
       index === 0 && styles['StickyTableHeading-second'],
@@ -1153,7 +1140,7 @@ const isBreakpointsXS = () => {
   return typeof window === 'undefined'
     ? false
     : window.innerWidth <
-    parseFloat(toPx(tokens.breakpoints['breakpoints-sm']) ?? '');
+        parseFloat(toPx(themeDefault.breakpoints['breakpoints-sm']) ?? '');
 };
 
 function getHeadingKey(heading: IndexTableHeading): string {

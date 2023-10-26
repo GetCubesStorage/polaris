@@ -3,6 +3,7 @@ import React, {useId} from 'react';
 import type {ComplexAction} from '../../types';
 import {SettingAction} from '../SettingAction';
 import {buttonFrom} from '../Button';
+// eslint-disable-next-line import/no-deprecated
 import {LegacyCard} from '../LegacyCard';
 
 export interface SettingToggleProps {
@@ -15,7 +16,7 @@ export interface SettingToggleProps {
 }
 
 /**
- * @deprecated The SettingToggle component will be removed in v12.0.0.
+ * @deprecated The SettingToggle component will be removed in v12
  * See the "With primitive components" example to learn how to compose
  * setting toggles with layout and typography primitives.
  * https://polaris.shopify.com/components/deprecated/setting-toggle

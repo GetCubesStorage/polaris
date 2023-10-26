@@ -6,7 +6,6 @@ import {PositionedOverlay} from '../../../PositionedOverlay';
 import type {PositionedOverlayProps} from '../../../PositionedOverlay';
 import {useI18n} from '../../../../utilities/i18n';
 import type {Width, Padding, BorderRadius} from '../../Tooltip';
-import {useFeatures} from '../../../../utilities/features';
 
 import styles from './TooltipOverlay.scss';
 
@@ -18,7 +17,7 @@ const tailUpPaths = (
     />
     <path
       d="M17.442 10.171h-16v-2l6.87-6.612a2 2 0 0 1 2.83.055l6.3 6.557v2Z"
-      fill="var(--p-color-bg)"
+      fill="var(--p-color-bg-surface)"
     />
   </>
 );
@@ -31,7 +30,7 @@ const tailDownPaths = (
     />
     <path
       d="M1.387 0h16v2l-6.87 6.612a2 2 0 0 1-2.83-.055L1.387 2V0Z"
-      fill="var(--p-color-bg)"
+      fill="var(--p-color-bg-surface)"
     />
   </>
 );
@@ -66,7 +65,6 @@ export function TooltipOverlay({
   zIndexOverride,
   instant,
 }: TooltipOverlayProps) {
-  const {polarisSummerEditions2023} = useFeatures();
   const i18n = useI18n();
   const markup = active ? (
     <PositionedOverlay
@@ -112,11 +110,9 @@ export function TooltipOverlay({
 
     return (
       <div style={style} className={containerClassName} {...layer.props}>
-        {polarisSummerEditions2023 && (
-          <svg className={styles.Tail} width="19" height="11" fill="none">
-            {positioning === 'above' ? tailDownPaths : tailUpPaths}
-          </svg>
-        )}
+        <svg className={styles.Tail} width="19" height="11" fill="none">
+          {positioning === 'above' ? tailDownPaths : tailUpPaths}
+        </svg>
         <div
           id={id}
           role="tooltip"
