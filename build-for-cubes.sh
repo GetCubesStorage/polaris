@@ -6,4 +6,9 @@ set -u # exit script if a variable is uninitialized
 
 (cd polaris-tokens && yarn build)
 (cd polaris-icons && yarn build)
-(cd polaris-react && yarn build:react)
+(cd polaris-react && rm build -rf && yarn build:react)
+
+mkdir -p ../cubes-admin/polaris-react/
+cp -r polaris-react/build/ts/src ../cubes-admin/polaris-react
+cp -r polaris-react/locales ../cubes-admin/polaris-react
+cp polaris-react/build/esm/styles.css ../cubes-admin/polaris-react

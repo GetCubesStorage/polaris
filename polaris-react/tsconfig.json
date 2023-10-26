@@ -3,6 +3,8 @@
   "compilerOptions": {
     "composite": true,
     "emitDeclarationOnly": false,
+    "sourceMap": false,
+    "declarationMap": false,
     "importsNotUsedAsValues": "error",
     "outDir": "build/ts",
     "rootDir": "./",
