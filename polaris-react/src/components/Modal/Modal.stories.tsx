@@ -112,13 +112,50 @@ export function WithPrimaryAction() {
                   onChange={() => {}}
                   autoComplete="off"
                   connectedRight={
-                    <Button primary onClick={handleClick}>
+                    <Button variant="primary" onClick={handleClick}>
                       Copy link
                     </Button>
                   }
                 />
               </LegacyStack.Item>
             </LegacyStack>
+          </Modal.Section>
+        </Modal>
+      </div>
+    </Frame>
+  );
+}
+
+export function WithDestructivePrimaryAction() {
+  const [active, setActive] = useState(true);
+
+  const toggleModal = useCallback(() => setActive((active) => !active), []);
+
+  const activator = <Button onClick={toggleModal}>Open</Button>;
+
+  return (
+    <Frame>
+      <div style={{height: '500px'}}>
+        <Modal
+          activator={activator}
+          open={active}
+          onClose={toggleModal}
+          title="Discard all unsaved changes"
+          primaryAction={{
+            destructive: true,
+            content: 'Discard changes',
+            onAction: toggleModal,
+          }}
+          secondaryActions={[
+            {
+              content: 'Continue editing',
+              onAction: toggleModal,
+            },
+          ]}
+        >
+          <Modal.Section>
+            If you discard changes, you’ll delete any edits you made since you
+            last saved.
           </Modal.Section>
         </Modal>
       </div>
@@ -227,7 +264,7 @@ export function Large() {
     <Frame>
       <div style={{height: '500px'}}>
         <Modal
-          large
+          size="large"
           activator={activator}
           open={active}
           onClose={toggleActive}
@@ -280,7 +317,7 @@ export function Small() {
     <Frame>
       <div style={{height: '500px'}}>
         <Modal
-          small
+          size="small"
           activator={activator}
           open={active}
           onClose={toggleActive}
@@ -683,7 +720,7 @@ export function Fullscreen() {
           open
           onClose={() => {}}
           sectioned
-          fullScreen
+          size="fullScreen"
           primaryAction={{content: 'Save'}}
         >
           <Text as="h1">Fullscreen on small displays</Text>

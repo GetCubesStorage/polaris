@@ -2,6 +2,7 @@
 title: Getting Started
 navTitle: Getting started
 description: 'Polaris is the design system for the Shopify admin. If you’re just starting out with Polaris, here’s a list of recommended resources and guidance to get you started.'
+showTOC: true
 keywords:
   - about
   - polaris
@@ -18,13 +19,17 @@ order: 1
 icon: HintMajor
 ---
 
+# {frontmatter.title}
+
+<Lede>{frontmatter.description}</Lede>
+
 ## Design resources
 
 Shopify provides [Figma community resources](https://www.figma.com/@Shopify) for Polaris components, styles, and icons. If you are new to Figma, check out our [onboarding guide](https://www.figma.com/community/file/994263185745279952), or open Figma and start designing with the Polaris:
 
-- [Component UI kit](https://www.figma.com/community/file/1111360433678236702)
-- [Style Library](https://www.figma.com/community/file/1111359207966840858)
-- [Icon Library](https://www.figma.com/file/mMHFt3kEDNjLMZWowi6gnt/Polaris-Icons?node-id=753%3A2)
+- [Component UI kit](https://www.figma.com/community/file/1293611962331823010/polaris-components)
+- [Style Library](https://www.figma.com/community/file/1293614121185734569/polaris-styles)
+- [Icon Library](https://www.figma.com/community/file/1293614863849914283/polaris-icons)
 
 ## Development resources
 

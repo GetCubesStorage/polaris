@@ -1,6 +1,6 @@
 ---
 title: Modal
-description: Modals are overlays that require merchants to take an action before they can continue interacting with the rest of Shopify. They can be disruptive and should be used thoughtfully and sparingly.
+shortDescription: Used to interrupt merchants with urgent information, details, or actions.
 category: Overlays
 keywords:
   - modal
@@ -32,6 +32,9 @@ examples:
   - fileName: modal-with-primary-action.tsx
     title: With primary action
     description: Use to let merchants take a key action.
+  - fileName: modal-with-destructive-primary-action.tsx
+    title: With destructive primary action
+    description: Use to let merchants take a key action that cannot be undone.
   - fileName: modal-with-primary-and-secondary-actions.tsx
     title: With primary and secondary actions
     description: Use to let merchants take key actions at the bottom of the modal.
@@ -53,7 +56,20 @@ examples:
   - fileName: modal-without-an-activator-prop.tsx
     title: Without an activator prop
     description: Use an external activator when technical limitations prevent you from passing the activator as an element or a ref. Make sure to focus the activator on close when choosing this approach. See the [accessibility features of a modal](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) for more information regarding focus.
+previewImg: /images/components/overlays/modal.png
 ---
+
+# {frontmatter.title}
+
+<Lede>
+
+Modals are overlays that require merchants to take an action before they can continue interacting with the rest of Shopify. They can be disruptive and should be used thoughtfully and sparingly.
+
+</Lede>
+
+<Examples />
+
+<Props componentName={frontmatter.title} />
 
 ## Best practices
 
@@ -73,10 +89,10 @@ Modals should:
 
 Modal titles should:
 
-- Use a clear {verb}+{noun} question or statement
+- Use a clear \{verb\}+\{noun\} question or statement
 - Follow the content guidelines for [headings and subheadings](https://polaris.shopify.com/content/actionable-language#headings-and-subheadings)
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -90,7 +106,7 @@ Modal titles should:
 - Are you sure you want to delete customer?
 - Discard?
 
-<!-- end -->
+</DoDont>
 
 ### Body content
 
@@ -98,7 +114,7 @@ Body content should be:
 
 - Actionable: start sentences with imperative verbs when telling a merchant what actions are available to them (especially something new). Don’t use permissive language like "you can".
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -110,12 +126,12 @@ Body content should be:
 - You can edit the email address where emails will be sent.
 - Are you sure you want to delete the variant Dark Blue Tee/Small/Silk? You cannot reverse this.
 
-<!-- end -->
+</DoDont>
 
 - Structured for merchant success: always put the most critical information first.
 - Clear: use the verb “need” to help merchants understand when they’re required to do something.
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -125,7 +141,7 @@ Body content should be:
 
 - To buy a shipping label, you must enter the total weight of your shipment, including packaging.
 
-<!-- end -->
+</DoDont>
 
 ### Primary and secondary actions
 
@@ -133,7 +149,7 @@ Actions should be:
 
 - Clear and predictable: merchants should be able to anticipate what will happen when they click a button. Never deceive a merchant by mislabeling an action.
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -145,11 +161,11 @@ Actions should be:
 - New order
 - Buy
 
-<!-- end -->
+</DoDont>
 
-- Action-led: actions should always lead with a strong verb that encourages action. To provide enough context to merchants use the {verb}+{noun} format on actions except in the case of common actions like Save, Close, Cancel, or OK.
+- Action-led: actions should always lead with a strong verb that encourages action. To provide enough context to merchants use the \{verb\}+\{noun\} format on actions except in the case of common actions like Save, Close, Cancel, or OK.
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -161,11 +177,11 @@ Actions should be:
 - Try Apple Pay
 - View your settings
 
-<!-- end -->
+</DoDont>
 
 - Scannable: avoid unnecessary words and articles such as the, an, or a.
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -175,7 +191,7 @@ Actions should be:
 
 - Add a menu item
 
-<!-- end -->
+</DoDont>
 
 ### Tertiary actions
 
@@ -184,19 +200,21 @@ Tertiary actions should:
 - Only be used when the action requires the context of the content in the modal
 - Never be used to dismiss the modal
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
-- Use a plain button for a tertiary action if needed
-  ![Screenshot of modal with a plain button as a tertiary action](/images/components/overlays/modal/do-use-plain-button-for-tertiary-action@2x.png)
+![Screenshot of modal with a plain button as a tertiary action](/images/components/overlays/modal/do-use-plain-button-for-tertiary-action@2x.png)
+
+Use a plain button for a tertiary action if needed
 
 #### Don’t
 
-- Use a tertiary action for a destructive action
-  ![Screenshot of modal with a destructive button as a tertiary action](/images/components/overlays/modal/dont-use-destructive-tertiary-action@2x.png)
+![Screenshot of modal with a destructive button as a tertiary action](/images/components/overlays/modal/dont-use-destructive-tertiary-action@2x.png)
 
-<!-- end -->
+Use a tertiary action for a destructive action
+
+</DoDont>
 
 ### Footer
 
@@ -204,7 +222,7 @@ Body content should be:
 
 - Actionable: start sentences with imperative verbs when telling a merchant what actions are available to them (especially something new). Don’t use permissive language like "you can".
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -214,12 +232,12 @@ Body content should be:
 
 - You can edit the email address where emails will be sent.
 
-<!-- end -->
+</DoDont>
 
 - Structured for merchant success: always put the most critical information first.
 - Clear: use the verb “need” to help merchants understand when they’re required to do something.
 
-<!-- dodont -->
+<DoDont>
 
 #### Do
 
@@ -229,7 +247,7 @@ Body content should be:
 
 - To buy a shipping label, you must enter the total weight of your shipment, including packaging.
 
-<!-- end -->
+</DoDont>
 
 ---
 

@@ -17,6 +17,7 @@ interface Props {
    * or hide the TOC, use showTOC */
   isContentPage?: boolean;
   showTOC?: boolean;
+  collapsibleTOC?: boolean;
   children: React.ReactNode;
 }
 
@@ -24,6 +25,7 @@ function Layout({
   title,
   isContentPage = false,
   showTOC = isContentPage,
+  collapsibleTOC = false,
   editPageLinkPath,
   children,
 }: Props) {
@@ -35,7 +37,7 @@ function Layout({
     githubIssueSubject,
   )}&amp;labels=polaris.shopify.com`;
   const editOnGithubUrl = editPageLinkPath
-    ? `https://github.com/Shopify/polaris/tree/main${editPageLinkPath}`
+    ? `https://github.com/Shopify/polaris/tree/main/${editPageLinkPath}`
     : '';
 
   return (
@@ -63,7 +65,7 @@ function Layout({
       </Box>
       {showTOC && (
         <div className={styles.TOCWrapper}>
-          <TOC items={tocItems} />
+          <TOC items={tocItems} collapsibleTOC={collapsibleTOC} />
         </div>
       )}
     </Container>

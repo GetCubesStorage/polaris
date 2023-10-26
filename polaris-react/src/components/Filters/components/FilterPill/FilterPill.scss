@@ -1,9 +1,9 @@
 @import '../../../../styles/common';
 
 .FilterButton {
-  background: var(--p-color-bg-subdued);
-  border-radius: var(--p-border-radius-750);
-  border: var(--p-color-border-subdued) dashed var(--p-border-width-025);
+  background: var(--p-color-bg-surface);
+  border-radius: var(--p-border-radius-200);
+  border: var(--p-color-border) dashed var(--p-border-width-025);
   cursor: pointer;
   color: var(--p-color-text);
 
@@ -18,7 +18,7 @@
   &:hover,
   &:focus,
   &:active {
-    background: var(--p-color-bg-hover);
+    background: var(--p-color-bg-surface-hover);
     border-color: var(--p-color-border);
 
     path {
@@ -26,68 +26,31 @@
     }
   }
 
-  &.disabledFilterButton {
-    background: var(--p-color-bg-disabled);
-    border-color: var(--p-color-border-disabled);
-    color: var(--p-color-text-disabled);
-    cursor: default;
-  }
-
-  &.ActiveFilterButton {
-    background: var(--p-color-bg);
+  &:hover,
+  &:active {
     border-style: solid;
   }
 
-  &::after {
-    border-radius: var(--p-border-radius-750);
+  &:hover,
+  &:focus {
+    background: transparent;
   }
 
-  #{$se23} & {
-    background: var(--p-color-bg-secondary-experimental);
+  &:active {
+    background: var(--p-color-bg-surface-secondary);
+  }
+
+  &.ActiveFilterButton {
+    background: var(--p-color-bg-surface);
+    border-style: solid;
+
+    &:active {
+      background: var(--p-color-bg-surface-secondary);
+    }
+  }
+
+  &::after {
     border-radius: var(--p-border-radius-200);
-    border: var(--p-color-border) dashed var(--p-border-width-025);
-
-    &:hover,
-    &:active {
-      border-style: solid;
-    }
-
-    &:hover,
-    &:focus {
-      background: transparent;
-    }
-
-    &:active {
-      background: var(--p-color-bg-subdued);
-
-      #{$se23} & {
-        background: var(--p-color-bg-secondary-experimental);
-      }
-    }
-
-    &.disabledFilterButton {
-      background: var(--p-color-bg-disabled);
-      border-color: var(--p-color-border-disabled);
-      color: var(--p-color-text-disabled);
-      cursor: default;
-    }
-
-    &.ActiveFilterButton {
-      background: var(--p-color-bg);
-      border-style: solid;
-
-      &:active {
-        background: var(--p-color-bg-subdued);
-
-        #{$se23} & {
-          background: var(--p-color-bg-secondary-experimental);
-        }
-      }
-    }
-
-    &::after {
-      border-radius: var(--p-border-radius-200);
-    }
   }
 }
 
@@ -161,7 +124,7 @@
 }
 
 .ClearButtonWrapper {
-  #{$se23} & button {
+  button {
     min-height: 0;
     padding: 0;
     margin: 0;

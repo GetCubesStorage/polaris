@@ -1,397 +1,231 @@
-import type {Experimental} from '../../types';
 import type {MetaTokenProperties} from '../types';
 import * as colors from '../../colors';
-import * as colorsExperimental from '../../colors-experimental';
-import {createVar as createVarName} from '../../utilities';
 
 export type ColorBackgroundAlias =
-  | 'bg'
-  | 'bg-active'
-  | 'bg-app'
-  | 'bg-app-active'
-  | 'bg-app-hover'
-  | 'bg-app-selected'
-  | 'bg-caution'
-  | 'bg-caution-strong'
-  | 'bg-caution-subdued'
-  | 'bg-caution-subdued-active'
-  | 'bg-caution-subdued-hover'
-  | 'bg-critical'
-  | 'bg-critical-strong'
-  | 'bg-critical-strong-active'
-  | 'bg-critical-strong-hover'
-  | 'bg-critical-subdued'
-  | 'bg-critical-subdued-active'
-  | 'bg-critical-subdued-hover'
-  | 'bg-disabled'
-  | 'bg-hover'
-  | 'bg-info'
-  | 'bg-info-strong'
-  | 'bg-info-subdued'
-  | 'bg-info-subdued-active'
-  | 'bg-info-subdued-hover'
-  | 'bg-input'
-  | 'bg-inset'
-  | 'bg-inset-strong'
-  | 'bg-interactive'
-  | 'bg-interactive-active'
-  | 'bg-interactive-disabled'
-  | 'bg-interactive-hover'
-  | 'bg-interactive-selected'
-  | 'bg-interactive-subdued'
-  | 'bg-interactive-subdued-active'
-  | 'bg-interactive-subdued-hover'
-  | 'bg-inverse'
-  | 'bg-inverse-active'
-  | 'bg-inverse-hover'
-  | 'bg-magic'
-  | 'bg-magic-hover'
-  | 'bg-magic-active'
-  | 'bg-magic-strong'
-  | 'bg-magic-subdued'
-  | 'bg-magic-subdued-hover'
-  | 'bg-magic-subdued-active'
-  | 'bg-primary'
-  | 'bg-primary-active'
-  | 'bg-primary-hover'
-  | 'bg-primary-subdued'
-  | 'bg-primary-subdued-active'
-  | 'bg-primary-subdued-hover'
-  | 'bg-primary-subdued-selected'
-  | 'bg-strong'
-  | 'bg-strong-active'
-  | 'bg-strong-hover'
-  | 'bg-subdued'
-  | 'bg-subdued-active'
-  | 'bg-subdued-hover'
-  | 'bg-success'
-  | 'bg-success-strong'
-  | 'bg-success-subdued'
-  | 'bg-success-subdued-active'
-  | 'bg-success-subdued-hover'
-  | 'bg-warning'
-  | 'bg-surface'
-  | 'bg-surface-hover'
-  | 'bg-surface-active'
-  | 'bg-surface-selected'
-  | 'bg-surface-disabled'
-  | 'bg-surface-secondary'
-  | 'bg-surface-secondary-hover'
-  | 'bg-surface-secondary-active'
-  | 'bg-surface-secondary-selected'
-  | 'bg-surface-tertiary'
-  | 'bg-surface-tertiary-hover'
-  | 'bg-surface-tertiary-active'
-  | 'bg-surface-transparent'
-  | 'bg-surface-brand'
-  | 'bg-surface-brand-hover'
-  | 'bg-surface-brand-active'
-  | 'bg-surface-brand-selected'
-  | 'bg-surface-info'
-  | 'bg-surface-info-hover'
-  | 'bg-surface-info-active'
-  | 'bg-surface-success'
-  | 'bg-surface-success-hover'
-  | 'bg-surface-success-active'
-  | 'bg-surface-caution'
-  | 'bg-surface-caution-hover'
-  | 'bg-surface-caution-active'
-  | 'bg-surface-warning'
-  | 'bg-surface-warning-hover'
-  | 'bg-surface-warning-active'
-  | 'bg-surface-critical'
-  | 'bg-surface-critical-hover'
-  | 'bg-surface-critical-active'
-  | 'bg-surface-magic'
-  | 'bg-surface-magic-hover'
-  | 'bg-surface-magic-active'
-  | 'bg-surface-emphasis'
-  | 'bg-surface-emphasis-hover'
-  | 'bg-surface-emphasis-active'
-  | 'bg-surface-inverse'
-  | 'bg-fill'
-  | 'bg-fill-hover'
   | 'bg-fill-active'
-  | 'bg-fill-selected'
-  | 'bg-fill-disabled'
-  | 'bg-fill-secondary'
-  | 'bg-fill-secondary-hover'
-  | 'bg-fill-secondary-active'
-  | 'bg-fill-tertiary'
-  | 'bg-fill-tertiary-hover'
-  | 'bg-fill-tertiary-active'
-  | 'bg-fill-brand'
-  | 'bg-fill-brand-hover'
   | 'bg-fill-brand-active'
-  | 'bg-fill-brand-selected'
   | 'bg-fill-brand-disabled'
-  | 'bg-fill-emphasis'
-  | 'bg-fill-emphasis-hover'
-  | 'bg-fill-emphasis-active'
-  | 'bg-fill-success'
-  | 'bg-fill-success-hover'
-  | 'bg-fill-success-active'
-  | 'bg-fill-success-secondary'
-  | 'bg-fill-critical'
-  | 'bg-fill-critical-hover'
-  | 'bg-fill-critical-active'
-  | 'bg-fill-critical-selected'
-  | 'bg-fill-critical-secondary'
-  | 'bg-fill-caution'
-  | 'bg-fill-caution-hover'
+  | 'bg-fill-brand-hover'
+  | 'bg-fill-brand-selected'
+  | 'bg-fill-brand'
   | 'bg-fill-caution-active'
+  | 'bg-fill-caution-hover'
   | 'bg-fill-caution-secondary'
-  | 'bg-fill-info'
-  | 'bg-fill-info-hover'
+  | 'bg-fill-caution'
+  | 'bg-fill-critical-active'
+  | 'bg-fill-critical-hover'
+  | 'bg-fill-critical-secondary'
+  | 'bg-fill-critical-selected'
+  | 'bg-fill-critical'
+  | 'bg-fill-disabled'
+  | 'bg-fill-emphasis-active'
+  | 'bg-fill-emphasis-hover'
+  | 'bg-fill-emphasis'
+  | 'bg-fill-hover'
   | 'bg-fill-info-active'
+  | 'bg-fill-info-hover'
   | 'bg-fill-info-secondary'
-  | 'bg-fill-warning'
-  | 'bg-fill-warning-hover'
-  | 'bg-fill-warning-active'
-  | 'bg-fill-warning-secondary'
-  | 'bg-fill-magic'
-  | 'bg-fill-magic-secondary'
-  | 'bg-fill-magic-secondary-hover'
-  | 'bg-fill-magic-secondary-active'
-  | 'bg-fill-inverse'
-  | 'bg-fill-inverse-hover'
+  | 'bg-fill-info'
   | 'bg-fill-inverse-active'
-  | 'bg-fill-transparent'
-  | 'bg-fill-transparent-hover'
+  | 'bg-fill-inverse-hover'
+  | 'bg-fill-inverse'
+  | 'bg-fill-magic-secondary-active'
+  | 'bg-fill-magic-secondary-hover'
+  | 'bg-fill-magic-secondary'
+  | 'bg-fill-magic'
+  | 'bg-fill-secondary-active'
+  | 'bg-fill-secondary-hover'
+  | 'bg-fill-secondary'
+  | 'bg-fill-selected'
+  | 'bg-fill-success-active'
+  | 'bg-fill-success-hover'
+  | 'bg-fill-success-secondary'
+  | 'bg-fill-success'
+  | 'bg-fill-tertiary-active'
+  | 'bg-fill-tertiary-hover'
+  | 'bg-fill-tertiary'
   | 'bg-fill-transparent-active'
-  | 'bg-fill-transparent-selected'
-  | 'bg-fill-transparent-secondary'
-  | 'bg-fill-transparent-secondary-hover'
+  | 'bg-fill-transparent-hover'
   | 'bg-fill-transparent-secondary-active'
-  | ColorBackgroundAliasExperimental
+  | 'bg-fill-transparent-secondary-hover'
+  | 'bg-fill-transparent-secondary'
+  | 'bg-fill-transparent-selected'
+  | 'bg-fill-transparent'
+  | 'bg-fill-warning-active'
+  | 'bg-fill-warning-hover'
+  | 'bg-fill-warning-secondary'
+  | 'bg-fill-warning'
+  | 'bg-fill'
+  | 'bg-inverse'
+  | 'bg-surface-active'
+  | 'bg-surface-brand-active'
+  | 'bg-surface-brand-hover'
+  | 'bg-surface-brand-selected'
+  | 'bg-surface-brand'
+  | 'bg-surface-caution-active'
+  | 'bg-surface-caution-hover'
+  | 'bg-surface-caution'
+  | 'bg-surface-critical-active'
+  | 'bg-surface-critical-hover'
+  | 'bg-surface-critical'
+  | 'bg-surface-disabled'
+  | 'bg-surface-emphasis-active'
+  | 'bg-surface-emphasis-hover'
+  | 'bg-surface-emphasis'
+  | 'bg-surface-hover'
+  | 'bg-surface-info-active'
+  | 'bg-surface-info-hover'
+  | 'bg-surface-info'
+  | 'bg-surface-inverse'
+  | 'bg-surface-magic-active'
+  | 'bg-surface-magic-hover'
+  | 'bg-surface-magic'
+  | 'bg-surface-secondary-active'
+  | 'bg-surface-secondary-hover'
+  | 'bg-surface-secondary-selected'
+  | 'bg-surface-secondary'
+  | 'bg-surface-selected'
+  | 'bg-surface-success-active'
+  | 'bg-surface-success-hover'
+  | 'bg-surface-success'
+  | 'bg-surface-tertiary-active'
+  | 'bg-surface-tertiary-hover'
+  | 'bg-surface-tertiary'
+  | 'bg-surface-transparent'
+  | 'bg-surface-warning-active'
+  | 'bg-surface-warning-hover'
+  | 'bg-surface-warning'
+  | 'bg-surface'
+  | 'bg'
   /** Specialty and component background colors. */
-  | 'nav-bg'
-  | 'backdrop-bg'
-  | 'input-bg-surface'
-  | 'input-bg-surface-hover'
-  | 'input-bg-surface-active'
-  | 'nav-bg-surface'
-  | 'nav-bg-surface-hover'
-  | 'nav-bg-surface-active'
-  | 'nav-bg-surface-selected'
-  | 'radio-button-bg-surface-disabled'
-  | 'checkbox-bg-surface-disabled'
   | 'avatar-bg-fill'
-  | 'avatar-one-bg-fill'
-  | 'avatar-two-bg-fill'
-  | 'avatar-three-bg-fill'
-  | 'avatar-four-bg-fill'
   | 'avatar-five-bg-fill'
-  | 'video-thumbnail-play-button-bg-fill'
-  | 'video-thumbnail-play-button-bg-fill-hover';
+  | 'avatar-four-bg-fill'
+  | 'avatar-one-bg-fill'
+  | 'avatar-three-bg-fill'
+  | 'avatar-two-bg-fill'
+  | 'backdrop-bg'
+  | 'checkbox-bg-surface-disabled'
+  | 'input-bg-surface-active'
+  | 'input-bg-surface-hover'
+  | 'input-bg-surface'
+  | 'nav-bg-surface-active'
+  | 'nav-bg-surface-hover'
+  | 'nav-bg-surface-selected'
+  | 'nav-bg-surface'
+  | 'nav-bg'
+  | 'radio-button-bg-surface-disabled'
+  | 'video-thumbnail-play-button-bg-fill-hover'
+  | 'video-thumbnail-play-button-bg-fill';
 
 export type ColorBorderAlias =
-  | 'border'
-  | 'border-caution'
-  | 'border-caution-subdued'
-  | 'border-critical'
-  | 'border-critical-active'
-  | 'border-critical-hover'
-  | 'border-critical-subdued'
-  | 'border-critical-secondary'
-  | 'border-disabled'
-  | 'border-hover'
-  | 'border-focus'
-  | 'border-info'
-  | 'border-info-subdued'
-  | 'border-input'
-  | 'border-input-hover'
-  | 'border-interactive'
-  | 'border-interactive-active'
-  | 'border-interactive-disabled'
-  | 'border-interactive-focus'
-  | 'border-interactive-hover'
-  | 'border-interactive-subdued'
-  | 'border-inverse'
-  | 'border-inverse-hover'
-  | 'border-inverse-active'
-  | 'border-magic'
-  | 'border-magic-strong'
-  | 'border-magic-secondary'
-  | 'border-primary'
-  | 'border-strong'
-  | 'border-strong-hover'
-  | 'border-subdued'
-  | 'border-success'
-  | 'border-success-subdued'
-  | 'border-secondary'
-  | 'border-tertiary'
   | 'border-brand'
-  | 'border-warning'
-  | 'border-emphasis'
-  | 'border-emphasis-hover'
+  | 'border-caution'
+  | 'border-critical-secondary'
+  | 'border-critical'
+  | 'border-disabled'
   | 'border-emphasis-active'
-  | ColorBorderAliasExperimental
+  | 'border-emphasis-hover'
+  | 'border-emphasis'
+  | 'border-focus'
+  | 'border-hover'
+  | 'border-info'
+  | 'border-inverse-active'
+  | 'border-inverse-hover'
+  | 'border-inverse'
+  | 'border-magic-secondary'
+  | 'border-magic'
+  | 'border-secondary'
+  | 'border-success'
+  | 'border-tertiary'
+  | 'border-warning'
+  | 'border'
   /** Specialty and component border colors. */
-  | 'input-border'
+  | 'input-border-active'
   | 'input-border-hover'
-  | 'input-border-active';
+  | 'input-border';
 
 export type ColorIconAlias =
-  | 'icon'
   | 'icon-active'
+  | 'icon-brand'
   | 'icon-caution'
   | 'icon-critical'
   | 'icon-disabled'
+  | 'icon-emphasis-active'
+  | 'icon-emphasis-hover'
+  | 'icon-emphasis'
   | 'icon-hover'
   | 'icon-info'
-  | 'icon-interactive'
-  | 'icon-interactive-active'
-  | 'icon-interactive-disabled'
-  | 'icon-interactive-hover'
-  | 'icon-interactive-inverse'
   | 'icon-inverse'
   | 'icon-magic'
-  | 'icon-on-color'
-  | 'icon-primary'
-  | 'icon-subdued'
+  | 'icon-secondary-active'
+  | 'icon-secondary-hover'
+  | 'icon-secondary'
   | 'icon-success'
   | 'icon-warning'
-  | 'icon-secondary'
-  | 'icon-secondary-hover'
-  | 'icon-secondary-active'
-  | 'icon-brand'
-  | 'icon-emphasis'
-  | 'icon-emphasis-hover'
-  | 'icon-emphasis-active'
-  | ColorIconAliasExperimental
+  | 'icon'
   /** Specialty and component icon colors. */
-  | 'radio-button-icon-disabled'
-  | 'checkbox-icon-disabled';
+  | 'checkbox-icon-disabled'
+  | 'radio-button-icon-disabled';
 
 export type ColorTextAlias =
-  | 'text'
-  | 'text-caution'
-  | 'text-caution-hover'
-  | 'text-caution-active'
-  | 'text-caution-on-bg-fill'
-  | 'text-caution-strong'
-  | 'text-critical'
-  | 'text-critical-hover'
-  | 'text-critical-active'
-  | 'text-critical-on-bg-fill'
-  | 'text-critical-strong'
-  | 'text-disabled'
-  | 'text-info'
-  | 'text-info-hover'
-  | 'text-info-active'
-  | 'text-info-on-bg-fill'
-  | 'text-info-strong'
-  | 'text-interactive'
-  | 'text-interactive-active'
-  | 'text-interactive-disabled'
-  | 'text-interactive-hover'
-  | 'text-interactive-inverse'
-  | 'text-inverse'
-  | 'text-inverse-secondary'
-  | 'text-inverse-subdued'
-  | 'text-magic'
-  | 'text-magic-on-bg-fill'
-  | 'text-magic-strong'
-  | 'text-on-color'
-  | 'text-primary'
-  | 'text-primary-hover'
-  | 'text-subdued'
-  | 'text-success'
-  | 'text-success-hover'
-  | 'text-success-active'
-  | 'text-success-on-bg-fill'
-  | 'text-success-strong'
-  | 'text-warning-strong'
-  | 'text-warning'
-  | 'text-warning-hover'
-  | 'text-warning-active'
-  | 'text-warning-on-bg-fill'
-  | 'text-secondary'
-  | 'text-brand'
   | 'text-brand-hover'
-  | 'text-brand-on-bg-fill'
-  | 'text-brand-on-bg-fill-hover'
   | 'text-brand-on-bg-fill-active'
   | 'text-brand-on-bg-fill-disabled'
-  | 'text-emphasis'
-  | 'text-emphasis-hover'
+  | 'text-brand-on-bg-fill-hover'
+  | 'text-brand-on-bg-fill'
+  | 'text-brand'
+  | 'text-caution-active'
+  | 'text-caution-hover'
+  | 'text-caution-on-bg-fill'
+  | 'text-caution'
+  | 'text-critical-active'
+  | 'text-critical-hover'
+  | 'text-critical-on-bg-fill'
+  | 'text-critical'
+  | 'text-disabled'
   | 'text-emphasis-active'
-  | 'text-emphasis-on-bg-fill'
-  | 'text-emphasis-on-bg-fill-hover'
+  | 'text-emphasis-hover'
   | 'text-emphasis-on-bg-fill-active'
-  | 'text-link'
-  | 'text-link-hover'
+  | 'text-emphasis-on-bg-fill-hover'
+  | 'text-emphasis-on-bg-fill'
+  | 'text-emphasis'
+  | 'text-info-active'
+  | 'text-info-hover'
+  | 'text-info-on-bg-fill'
+  | 'text-info'
+  | 'text-inverse-secondary'
+  | 'text-inverse'
   | 'text-link-active'
+  | 'text-link-hover'
   | 'text-link-inverse'
-  | ColorTextAliasExperimental
+  | 'text-link'
+  | 'text-magic-on-bg-fill'
+  | 'text-magic'
+  | 'text-secondary'
+  | 'text-success-active'
+  | 'text-success-hover'
+  | 'text-success-on-bg-fill'
+  | 'text-success'
+  | 'text-warning-active'
+  | 'text-warning-hover'
+  | 'text-warning-on-bg-fill'
+  | 'text-warning'
+  | 'text'
   /** Specialty and component text colors. */
-  | 'avatar-text-on-bg-fill'
-  | 'avatar-one-text-on-bg-fill'
-  | 'avatar-two-text-on-bg-fill'
-  | 'avatar-three-text-on-bg-fill'
-  | 'avatar-four-text-on-bg-fill'
   | 'avatar-five-text-on-bg-fill'
+  | 'avatar-four-text-on-bg-fill'
+  | 'avatar-one-text-on-bg-fill'
+  | 'avatar-text-on-bg-fill'
+  | 'avatar-three-text-on-bg-fill'
+  | 'avatar-two-text-on-bg-fill'
   | 'video-thumbnail-play-button-text-on-bg-fill';
-
-type ColorBackgroundAliasExperimental = Experimental<
-  | 'bg-backdrop'
-  | 'bg-input-active'
-  | 'bg-input-hover'
-  | 'bg-primary-disabled'
-  | 'bg-secondary'
-  | 'bg-success-strong-active'
-  | 'bg-success-strong-hover'
-  | 'bg-transparent'
-  | 'bg-transparent-active'
-  | 'bg-transparent-disabled'
-  | 'bg-transparent-hover'
-  | 'bg-transparent-primary'
-  | 'bg-transparent-primary-disabled'
-  | 'bg-transparent-secondary-disabled'
-  | 'bg-transparent-subdued'
-  | 'bg-warning-strong'
-  | 'bg-warning-subdued'
->;
-
-type ColorTextAliasExperimental = Experimental<
-  'text-warning' | 'text-critical-hover'
->;
-
-type ColorIconAliasExperimental = Experimental<
-  | 'icon-critical-strong-active'
-  | 'icon-critical-strong-hover'
-  | 'icon-critical-strong'
-  | 'icon-info-strong'
-  | 'icon-success-strong'
-  | 'icon-warning-strong'
->;
-
-type ColorBorderAliasExperimental = Experimental<
-  'border-input-active' | 'border-critical-strong'
->;
-
-type ColorAvatarAliasExperimental = Experimental<
-  | 'avatar-background'
-  | 'avatar-color'
-  | 'avatar-style-one-background'
-  | 'avatar-style-one-color'
-  | 'avatar-style-two-background'
-  | 'avatar-style-two-color'
-  | 'avatar-style-three-background'
-  | 'avatar-style-three-color'
-  | 'avatar-style-four-background'
-  | 'avatar-style-four-color'
-  | 'avatar-style-five-background'
-  | 'avatar-style-five-color'
->;
 
 export type ColorTokenName =
   | `color-${ColorBackgroundAlias}`
   | `color-${ColorBorderAlias}`
   | `color-${ColorIconAlias}`
-  | `color-${ColorTextAlias}`
-  | `color-${ColorAvatarAliasExperimental}`;
+  | `color-${ColorTextAlias}`;
 
 export type ColorTokenGroup = {
   [TokenName in ColorTokenName]: string;
@@ -400,1013 +234,896 @@ export type ColorTokenGroup = {
 export const color: {
   [TokenName in ColorTokenName]: MetaTokenProperties;
 } = {
-  // ------------------------------
-  // Net new tokens
-  // ------------------------------
-  'color-border-inverse-active': {value: colorsExperimental.gray[8]},
-  'color-border-inverse-hover': {value: colorsExperimental.gray[10]},
-  'color-border-warning': {value: colorsExperimental.orange[8]},
-  'color-checkbox-icon-disabled': {value: colorsExperimental.gray[1]},
-  'color-checkbox-bg-surface-disabled': {
-    value: colorsExperimental.blackAlpha[7],
+  'color-bg': {
+    value: colors.gray[6],
+    description: 'The default background color of the admin.',
   },
-  'color-bg-fill-active': {value: colorsExperimental.gray[4]},
-  'color-bg-fill-brand-selected': {value: colorsExperimental.gray[15]},
-  'color-bg-fill-caution-active': {value: colorsExperimental.yellow[9]},
-  'color-bg-fill-caution-hover': {value: colorsExperimental.yellow[8]},
-  'color-bg-fill-critical-selected': {value: colorsExperimental.red[14]},
-  'color-bg-fill-emphasis-active': {value: colorsExperimental.blue[15]},
-  'color-bg-fill-emphasis-hover': {value: colorsExperimental.blue[14]},
-  'color-bg-fill-emphasis': {value: colorsExperimental.blue[13]},
-  'color-bg-fill-hover': {value: colorsExperimental.gray[3]},
-  'color-bg-fill-info-active': {value: colorsExperimental.azure[11]},
-  'color-bg-fill-info-hover': {value: colorsExperimental.azure[10]},
-  'color-bg-fill-secondary-active': {value: colorsExperimental.gray[8]},
-  'color-bg-fill-secondary-hover': {value: colorsExperimental.gray[7]},
-  'color-bg-fill-selected': {value: colorsExperimental.gray[10]},
-  'color-bg-fill-transparent-secondary-active': {
-    value: colorsExperimental.blackAlpha[8],
+  'color-bg-inverse': {
+    value: colors.gray[16],
+    description: 'Use for high contrast page or component backgrounds.',
   },
-  'color-bg-fill-transparent-secondary-hover': {
-    value: colorsExperimental.blackAlpha[7],
+  'color-bg-surface': {
+    value: colors.gray[1],
+    description:
+      'The background color for elements with the highest level of prominence, like a card.',
   },
-  'color-bg-fill-transparent-selected': {
-    value: colorsExperimental.blackAlpha[6],
+  'color-bg-surface-hover': {
+    value: colors.gray[4],
+    description:
+      'The hover state color for elements with the highest level of prominence.',
   },
-  'color-bg-fill-transparent': {value: colorsExperimental.blackAlpha[1]},
-  'color-bg-fill-warning-active': {value: colorsExperimental.orange[11]},
-  'color-bg-fill-warning-hover': {value: colorsExperimental.orange[10]},
-  'color-bg-fill': {value: colorsExperimental.gray[1]},
-  'color-icon-secondary-active': {value: colorsExperimental.gray[14]},
-  'color-icon-secondary-hover': {value: colorsExperimental.gray[13]},
-  'color-text-link-active': {value: colorsExperimental.blue[15]},
-  'color-text-link-hover': {value: colorsExperimental.blue[14]},
-  'color-text-link': {value: colorsExperimental.blue[13]},
-  'color-nav-bg': {value: colorsExperimental.gray[7]},
-  'color-nav-bg-surface-active': {value: colorsExperimental.gray[3]},
-  'color-nav-bg-surface-hover': {value: colorsExperimental.gray[6]},
-  'color-nav-bg-surface-selected': {value: colorsExperimental.gray[3]},
-  'color-nav-bg-surface': {value: colorsExperimental.blackAlpha[3]},
-  'color-radio-button-icon-disabled': {value: colorsExperimental.gray[1]},
-  'color-radio-button-bg-surface-disabled': {
-    value: colorsExperimental.blackAlpha[7],
+  'color-bg-surface-active': {
+    value: colors.gray[5],
+    description:
+      'The active state (on press) color for elements with the highest level of prominence.',
   },
-  'color-bg-surface-emphasis-active': {value: colorsExperimental.blue[5]},
-  'color-bg-surface-emphasis-hover': {value: colorsExperimental.blue[4]},
-  'color-bg-surface-emphasis': {value: colorsExperimental.blue[3]},
-  'color-bg-surface-inverse': {value: colorsExperimental.gray[15]},
-  'color-bg-surface-magic-active': {value: colorsExperimental.purple[6]},
-  'color-bg-surface-secondary-selected': {value: colorsExperimental.gray[7]},
-  'color-bg-surface-tertiary-active': {value: colorsExperimental.gray[8]},
-  'color-bg-surface-tertiary-hover': {value: colorsExperimental.gray[7]},
-  'color-bg-surface-warning-active': {value: colorsExperimental.orange[5]},
-  'color-bg-surface-warning-hover': {value: colorsExperimental.orange[4]},
-  'color-text-brand-on-bg-fill-active': {value: colorsExperimental.gray[10]},
-  'color-text-brand-on-bg-fill-disabled': {value: colorsExperimental.gray[1]},
-  'color-text-brand-on-bg-fill-hover': {value: colorsExperimental.gray[8]},
-  'color-text-brand-on-bg-fill': {value: colorsExperimental.gray[1]},
-  'color-text-caution-active': {value: colorsExperimental.yellow[16]},
-  'color-text-caution-hover': {value: colorsExperimental.yellow[15]},
-  'color-text-caution-on-bg-fill': {value: colorsExperimental.yellow[15]},
-  'color-text-critical-on-bg-fill': {value: colorsExperimental.red[1]},
-  'color-text-emphasis-on-bg-fill-active': {value: colorsExperimental.blue[7]},
-  'color-text-emphasis-on-bg-fill-hover': {value: colorsExperimental.blue[5]},
-  'color-text-emphasis-on-bg-fill': {value: colorsExperimental.blue[1]},
-  'color-text-info-active': {value: colorsExperimental.azure[16]},
-  'color-text-info-hover': {value: colorsExperimental.azure[15]},
-  'color-text-magic-on-bg-fill': {value: colorsExperimental.purple[1]},
-  'color-text-success-active': {value: colorsExperimental.green[16]},
-  'color-text-success-hover': {value: colorsExperimental.green[15]},
-  'color-text-success-on-bg-fill': {value: colorsExperimental.green[1]},
-  'color-text-warning-active': {value: colorsExperimental.orange[16]},
-  'color-text-warning-hover': {value: colorsExperimental.orange[15]},
-  'color-text-warning-on-bg-fill': {value: colorsExperimental.orange[16]},
-  'color-video-thumbnail-play-button-bg-fill-hover': {
-    value: colorsExperimental.blackAlpha[15],
+  'color-bg-surface-selected': {
+    value: colors.gray[6],
+    description:
+      'The selected state color for elements with the highest level of prominence.',
   },
-  'color-video-thumbnail-play-button-bg-fill': {
-    value: colorsExperimental.blackAlpha[14],
+  'color-bg-surface-disabled': {
+    value: colors.blackAlpha[5],
+    description: 'The disabled state color for elements.',
   },
-  'color-video-thumbnail-play-button-text-on-bg-fill': {
-    value: colorsExperimental.gray[1],
+  'color-bg-surface-secondary': {
+    value: colors.gray[4],
+    description:
+      'The background color for elements with a secondary level of prominence.',
   },
-  // ------------------------------
-  // Net new tokens (overridden in light-uplift)
-  // ------------------------------
-  'color-bg-surface': {value: createVar('color-bg')},
-  'color-bg-surface-hover': {value: colorsExperimental.gray[4]},
-  'color-bg-surface-active': {value: colorsExperimental.gray[5]},
-  'color-bg-surface-disabled': {value: colorsExperimental.blackAlpha[5]},
-  'color-bg-surface-secondary': {value: createVar('color-bg-subdued')},
   'color-bg-surface-secondary-hover': {
-    value: createVar('color-bg-subdued-hover'),
+    value: colors.gray[6],
+    description:
+      'The hover state color for elements with a secondary level of prominence.',
   },
   'color-bg-surface-secondary-active': {
-    value: createVar('color-bg-subdued-active'),
+    value: colors.gray[7],
+    description:
+      'The active state (on press) color for elements with a secondary level of prominence.',
+  },
+  'color-bg-surface-secondary-selected': {
+    value: colors.gray[7],
+    description:
+      'The selected state color for elements with a secondary level of prominence.',
   },
   'color-bg-surface-tertiary': {
-    value: createVar('color-bg-secondary-experimental'),
+    value: colors.gray[5],
+    description:
+      'The background color for elements with a third level of prominence.',
   },
-  'color-bg-fill-tertiary': {value: createVar('color-bg-strong')},
-  'color-bg-fill-tertiary-hover': {value: createVar('color-bg-strong-hover')},
-  'color-bg-fill-tertiary-active': {value: createVar('color-bg-strong-active')},
-  'color-input-bg-surface': {value: createVar('color-bg-input')},
-  'color-input-bg-surface-hover': {
-    value: createVar('color-bg-input-hover-experimental'),
+  'color-bg-surface-tertiary-hover': {
+    value: colors.gray[7],
+    description:
+      'The hover state color for elements with a third level of prominence.',
   },
-  'color-input-bg-surface-active': {
-    value: createVar('color-bg-input-active-experimental'),
+  'color-bg-surface-tertiary-active': {
+    value: colors.gray[8],
+    description:
+      'The active state (on press) color for elements with a third level of prominence.',
   },
-  'color-bg-fill-brand': {value: colorsExperimental.gray[15]},
-  'color-bg-fill-brand-hover': {value: colorsExperimental.gray[16]},
-  'color-bg-fill-brand-active': {value: colorsExperimental.gray[16]},
-  'color-bg-surface-brand': {value: colorsExperimental.gray[8]},
-  'color-bg-surface-brand-hover': {value: colorsExperimental.gray[7]},
-  'color-bg-surface-brand-active': {value: colorsExperimental.gray[6]},
-  'color-bg-surface-brand-selected': {value: colorsExperimental.gray[6]},
-  'color-bg-surface-selected': {value: createVar('color-bg-app-selected')},
-  'color-bg-fill-success': {value: createVar('color-bg-success-strong')},
-  'color-bg-fill-success-hover': {
-    value: createVar('color-bg-success-strong-hover-experimental'),
+  'color-bg-surface-brand': {
+    value: colors.gray[8],
+    description: 'Use to apply the key color to elements.',
   },
-  'color-bg-fill-success-active': {
-    value: createVar('color-bg-success-strong-active-experimental'),
+  'color-bg-surface-brand-hover': {
+    value: colors.gray[7],
+    description: 'The hover state color for key elements.',
   },
-  'color-bg-fill-success-secondary': {value: createVar('color-bg-success')},
-  'color-bg-surface-success': {value: createVar('color-bg-success-subdued')},
-  'color-bg-surface-success-hover': {
-    value: createVar('color-bg-success-subdued-hover'),
+  'color-bg-surface-brand-active': {
+    value: colors.gray[6],
+    description: 'The active state (on press) color for key elements.',
   },
-  'color-bg-surface-success-active': {
-    value: createVar('color-bg-success-subdued-active'),
+  'color-bg-surface-brand-selected': {
+    value: colors.gray[6],
+    description: 'The selected state color for key elements.',
   },
-  'color-bg-fill-critical': {value: createVar('color-bg-critical-strong')},
-  'color-bg-fill-critical-hover': {
-    value: createVar('color-bg-critical-strong-hover'),
+  'color-bg-surface-info': {
+    value: colors.azure[3],
+    description:
+      'Use for backgrounds communicating important information, like banners.',
   },
-  'color-bg-fill-critical-active': {
-    value: createVar('color-bg-critical-strong-active'),
-  },
-  'color-bg-fill-critical-secondary': {value: createVar('color-bg-critical')},
-  'color-bg-surface-critical': {value: createVar('color-bg-critical-subdued')},
-  'color-bg-surface-critical-hover': {
-    value: createVar('color-bg-critical-subdued-hover'),
-  },
-  'color-bg-surface-critical-active': {
-    value: createVar('color-bg-critical-subdued-active'),
-  },
-  'color-bg-fill-caution': {value: createVar('color-bg-caution-strong')},
-  'color-bg-fill-caution-secondary': {value: createVar('color-bg-caution')},
-  'color-bg-surface-caution': {value: createVar('color-bg-caution-subdued')},
-  'color-bg-surface-caution-hover': {
-    value: createVar('color-bg-caution-subdued-hover'),
-  },
-  'color-bg-surface-caution-active': {
-    value: createVar('color-bg-caution-subdued-active'),
-  },
-  'color-bg-fill-info': {value: createVar('color-bg-info-strong')},
-  'color-bg-fill-info-secondary': {value: createVar('color-bg-info')},
-  'color-bg-surface-info': {value: createVar('color-bg-info-subdued')},
   'color-bg-surface-info-hover': {
-    value: createVar('color-bg-info-subdued-hover'),
+    value: colors.azure[4],
+    description:
+      'The hover state color for communicating important information.',
   },
   'color-bg-surface-info-active': {
-    value: createVar('color-bg-info-subdued-active'),
+    value: colors.azure[6],
+    description:
+      'The active state (on press) color for communicating important information.',
   },
-  'color-bg-fill-warning': {
-    value: createVar('color-bg-warning-strong-experimental'),
+  'color-bg-surface-success': {
+    value: colors.green[3],
+    description: 'Use for backgrounds communicating success, like banners.',
   },
-  'color-bg-fill-warning-secondary': {value: createVar('color-bg-warning')},
+  'color-bg-surface-success-hover': {
+    value: colors.green[4],
+    description: 'The hover state color for communicating success.',
+  },
+  'color-bg-surface-success-active': {
+    value: colors.green[5],
+    description: 'The active state (on press) color for communicating success.',
+  },
+  'color-bg-surface-caution': {
+    value: colors.yellow[2],
+    description: 'Use for backgrounds communicating caution, like banners.',
+  },
+  'color-bg-surface-caution-hover': {
+    value: colors.yellow[3],
+    description: 'The hover state for communicating caution.',
+  },
+  'color-bg-surface-caution-active': {
+    value: colors.yellow[4],
+    description: 'The active state (on press) color for communicating caution.',
+  },
   'color-bg-surface-warning': {
-    value: createVar('color-bg-warning-subdued-experimental'),
+    value: colors.orange[3],
+    description: 'Use for backgrounds communicating warning, like banners.',
   },
-  'color-bg-fill-magic': {value: createVar('color-bg-magic-strong')},
-  'color-bg-fill-magic-secondary': {value: createVar('color-bg-magic')},
-  'color-bg-fill-magic-secondary-hover': {
-    value: createVar('color-bg-magic-hover'),
+  'color-bg-surface-warning-hover': {
+    value: colors.orange[4],
+    description: 'The hover state color for communicating warning.',
   },
-  'color-bg-fill-magic-secondary-active': {
-    value: createVar('color-bg-magic-active'),
+  'color-bg-surface-warning-active': {
+    value: colors.orange[5],
+    description: 'The active state (on press) color for communicating warning.',
   },
-  'color-bg-surface-magic': {value: colorsExperimental.purple[3]},
+  'color-bg-surface-critical': {
+    value: colors.red[4],
+    description:
+      'Use for backgrounds communicating critical information, like banners or input errors.',
+  },
+  'color-bg-surface-critical-hover': {
+    value: colors.red[5],
+    description:
+      'The hover state color for communicating critical information.',
+  },
+  'color-bg-surface-critical-active': {
+    value: colors.red[6],
+    description:
+      'The active state (on press) color for communicating critical information.',
+  },
+  'color-bg-surface-emphasis': {
+    value: colors.blue[3],
+    description:
+      'Use for backgrounds indicating areas of focus in editors, such as the theme editor.',
+  },
+  'color-bg-surface-emphasis-hover': {
+    value: colors.blue[4],
+    description:
+      'The hover state color for elements indicating areas of focus in editors.',
+  },
+  'color-bg-surface-emphasis-active': {
+    value: colors.blue[5],
+    description:
+      'The active state (on press) color for elements indicating areas of focus in editors.',
+  },
+  'color-bg-surface-magic': {
+    value: colors.purple[3],
+    description: 'Use for backgrounds of elements suggested by magic AI.',
+  },
   'color-bg-surface-magic-hover': {
-    value: createVar('color-bg-magic-subdued-hover'),
+    value: colors.purple[4],
+    description: 'The hover state color for elements suggested by magic AI.',
   },
-  'color-bg-fill-secondary': {value: createVar('color-bg-inset')},
-  'color-bg-fill-inverse': {value: createVar('color-bg-inset-strong')},
-  'color-bg-fill-inverse-hover': {value: createVar('color-bg-inverse-hover')},
-  'color-bg-fill-inverse-active': {value: createVar('color-bg-inverse-active')},
+  'color-bg-surface-magic-active': {
+    value: colors.purple[6],
+    description:
+      'The active state (on press) color for elements suggested by magic AI.',
+  },
+  'color-bg-surface-inverse': {
+    value: colors.gray[15],
+    description: 'Use for elements on bg-inverse.',
+  },
   'color-bg-surface-transparent': {
-    value: createVar('color-bg-transparent-experimental'),
+    value: colors.blackAlpha[1],
+    description: 'Use for elements that need a fully transparent background.',
   },
-  'color-bg-fill-transparent-hover': {
-    value: createVar('color-bg-transparent-hover-experimental'),
+  'color-bg-fill': {
+    value: colors.gray[1],
+    description:
+      'The background color of contained elements with a smaller surface area, like a button.',
   },
-  'color-bg-fill-transparent-active': {
-    value: createVar('color-bg-transparent-active-experimental'),
+  'color-bg-fill-hover': {
+    value: colors.gray[3],
+    description:
+      'The hover state color of contained elements with a smaller surface area, like a button.',
+  },
+  'color-bg-fill-active': {
+    value: colors.gray[4],
+    description:
+      'The active state (on press) color of contained elements with a smaller surface area, like a button.',
+  },
+  'color-bg-fill-selected': {
+    value: colors.gray[10],
+    description:
+      'The selected state color of contained elements with a smaller surface area, like a button or checkbox.',
   },
   'color-bg-fill-disabled': {
-    value: createVar('color-bg-transparent-disabled-experimental'),
+    value: colors.blackAlpha[5],
+    description:
+      'The disabled state color of contained elements with a smaller surface area, like a button.',
   },
-  'color-bg-fill-transparent-secondary': {
-    value: createVar('color-bg-transparent-subdued-experimental'),
+  'color-bg-fill-secondary': {
+    value: colors.gray[6],
+    description:
+      'The background color of elements with a smaller surface area and a secondary level of prominence.',
+  },
+  'color-bg-fill-secondary-hover': {
+    value: colors.gray[7],
+    description:
+      'The hover state color of elements with a smaller surface area and a secondary level of prominence.',
+  },
+  'color-bg-fill-secondary-active': {
+    value: colors.gray[8],
+    description:
+      'The active state (on press) color of elements with a smaller surface area and a secondary level of prominence.',
+  },
+  'color-bg-fill-tertiary': {
+    value: colors.gray[8],
+    description:
+      'The background color of elements with a smaller surface area and a third level of prominence.',
+  },
+  'color-bg-fill-tertiary-hover': {
+    value: colors.gray[9],
+    description:
+      'The hover state color of elements with a smaller surface area and a third level of prominence.',
+  },
+  'color-bg-fill-tertiary-active': {
+    value: colors.gray[10],
+    description:
+      'The active state (on press) color of elements with a smaller surface area and a third level of prominence.',
+  },
+  'color-bg-fill-brand': {
+    value: colors.gray[15],
+    description: 'The background color of main actions, like primary buttons.',
+  },
+  'color-bg-fill-brand-hover': {
+    value: colors.gray[16],
+    description: 'The hover state color of main actions, like primary buttons.',
+  },
+  'color-bg-fill-brand-active': {
+    value: colors.gray[16],
+    description:
+      'The active state (on press) color of main actions, like primary buttons.',
+  },
+  'color-bg-fill-brand-selected': {
+    value: colors.gray[15],
+    description:
+      'The selected state color of main actions, like primary buttons.',
   },
   'color-bg-fill-brand-disabled': {
-    value: createVar('color-bg-transparent-primary-disabled-experimental'),
-  },
-  'color-backdrop-bg': {value: createVar('color-bg-backdrop-experimental')},
-  'color-avatar-bg-fill': {
-    value: createVar('color-avatar-background-experimental'),
-  },
-  'color-avatar-one-bg-fill': {
-    value: createVar('color-avatar-style-one-background-experimental'),
-  },
-  'color-avatar-two-bg-fill': {
-    value: createVar('color-avatar-style-two-background-experimental'),
-  },
-  'color-avatar-three-bg-fill': {
-    value: createVar('color-avatar-style-three-background-experimental'),
-  },
-  'color-avatar-four-bg-fill': {
-    value: createVar('color-avatar-style-four-background-experimental'),
-  },
-  'color-avatar-five-bg-fill': {
-    value: createVar('color-avatar-style-five-background-experimental'),
-  },
-  'color-text-secondary': {value: createVar('color-text-subdued')},
-  'color-text-emphasis': {value: createVar('color-text-interactive')},
-  'color-text-emphasis-hover': {
-    value: createVar('color-text-interactive-hover'),
-  },
-  'color-text-emphasis-active': {
-    value: createVar('color-text-interactive-active'),
-  },
-  'color-text-brand': {value: createVar('color-text-primary')},
-  'color-text-brand-hover': {value: createVar('color-text-primary-hover')},
-  'color-text-critical-hover': {value: colorsExperimental.red[15]},
-  'color-text-info-on-bg-fill': {value: createVar('color-text-info-strong')},
-  'color-text-warning': {value: colorsExperimental.orange[14]},
-  'color-text-inverse-secondary': {
-    value: createVar('color-text-inverse-subdued'),
-  },
-  'color-text-link-inverse': {value: colorsExperimental.blue[8]},
-  'color-avatar-text-on-bg-fill': {
-    value: createVar('color-avatar-color-experimental'),
-  },
-  'color-avatar-one-text-on-bg-fill': {
-    value: createVar('color-avatar-style-one-color-experimental'),
-  },
-  'color-avatar-two-text-on-bg-fill': {
-    value: createVar('color-avatar-style-two-color-experimental'),
-  },
-  'color-avatar-three-text-on-bg-fill': {
-    value: createVar('color-avatar-style-three-color-experimental'),
-  },
-  'color-avatar-four-text-on-bg-fill': {
-    value: createVar('color-avatar-style-four-color-experimental'),
-  },
-  'color-avatar-five-text-on-bg-fill': {
-    value: createVar('color-avatar-style-five-color-experimental'),
-  },
-  'color-icon-secondary': {value: createVar('color-icon-subdued')},
-  'color-icon-emphasis': {value: createVar('color-icon-interactive')},
-  'color-icon-emphasis-hover': {
-    value: createVar('color-icon-interactive-hover'),
-  },
-  'color-icon-emphasis-active': {
-    value: createVar('color-icon-interactive-active'),
-  },
-  'color-icon-brand': {value: createVar('color-icon-primary')},
-  'color-border-secondary': {value: createVar('color-border-subdued')},
-  'color-border-tertiary': {value: colorsExperimental.gray[10]},
-  'color-input-border': {value: createVar('color-border-input')},
-  'color-input-border-hover': {value: createVar('color-border-input-hover')},
-  'color-input-border-active': {
-    value: createVar('color-border-input-active-experimental'),
-  },
-  'color-border-emphasis': {value: colorsExperimental.blue[13]},
-  'color-border-emphasis-hover': {
-    value: createVar('color-border-interactive-hover'),
-  },
-  'color-border-emphasis-active': {
-    value: createVar('color-border-interactive-active'),
-  },
-  'color-border-focus': {value: createVar('color-border-interactive-focus')},
-  'color-border-brand': {value: createVar('color-border-primary')},
-  'color-border-critical-secondary': {
-    value: createVar('color-border-critical-strong-experimental'),
-  },
-  'color-border-magic-secondary': {
-    value: createVar('color-border-magic-strong'),
-  },
-  // ------------------------------
-  // Existing tokens
-  // ------------------------------
-  'color-bg-inverse': {
-    value: colors.gray[900],
-    description: '',
-  },
-  'color-bg-inset-strong': {
-    value: colors.gray[800],
-    description: '',
-  },
-  'color-bg-inverse-hover': {
-    value: colors.gray[800],
-    description: '',
-  },
-  'color-bg-inverse-active': {
-    value: colors.gray[700],
-    description: '',
-  },
-  'color-bg-strong-hover': {
-    value: colors.gray[500],
-    description: '',
-  },
-  'color-bg-strong-active': {
-    value: colors.gray[500],
-    description: '',
-  },
-  'color-bg-strong': {
-    value: colors.gray[400],
-    description: '',
-  },
-  'color-bg-subdued-active': {
-    value: colors.gray[300],
-    description: '',
-  },
-  'color-bg-disabled': {
-    value: colors.gray[300],
-    description: '',
-  },
-  'color-bg-interactive-disabled': {
-    value: colors.gray[300],
-    description: '',
-  },
-  'color-bg-app': {
-    value: colors.gray[200],
-    description: '',
-  },
-  'color-bg-app-active': {
-    value: colors.gray[400],
-    description: '',
-  },
-  'color-bg-app-hover': {
-    value: colors.gray[300],
-    description: '',
-  },
-  'color-bg-app-selected': {
-    value: colors.gray[300],
-    description: '',
-  },
-  'color-bg-active': {
-    value: colors.gray[300],
-    description: '',
-  },
-  'color-bg-subdued-hover': {
-    value: colors.gray[200],
-    description: '',
-  },
-  'color-bg-inset': {
-    value: colors.gray[200],
-    description: '',
-  },
-  'color-bg-hover': {
-    value: colors.gray[200],
-    description: '',
-  },
-  'color-bg-subdued': {
-    value: colors.gray[100],
-    description: '',
-  },
-  'color-bg-input': {
-    value: colors.gray[50],
-    description: '',
-  },
-  'color-bg': {
-    value: colors.gray[50],
-    description: '',
-  },
-  'color-bg-primary-active': {
-    value: colors.green[900],
-    description: '',
-  },
-  'color-bg-primary-hover': {
-    value: colors.green[800],
-    description: '',
-  },
-  'color-bg-primary': {
-    value: colors.green[700],
-    description: '',
-  },
-  'color-bg-success-strong': {
-    value: colors.green[600],
-    description: '',
-  },
-  'color-bg-success': {
-    value: colors.green[300],
-    description: '',
-  },
-  'color-bg-primary-subdued-active': {
-    value: colors.green[200],
-    description: '',
-  },
-  'color-bg-success-subdued-active': {
-    value: colors.green[200],
-    description: '',
-  },
-  'color-bg-success-subdued': {
-    value: colors.green[100],
-    description: '',
-  },
-  'color-bg-primary-subdued-hover': {
-    value: colors.green[100],
-    description: '',
-  },
-  'color-bg-success-subdued-hover': {
-    value: colors.green[50],
-    description: '',
-  },
-  'color-bg-primary-subdued': {
-    value: colors.green[50],
-    description: '',
-  },
-  'color-bg-primary-subdued-selected': {
-    value: colors.green[50],
-    description: '',
-  },
-  'color-bg-critical-strong-active': {
-    value: colors.red[800],
-    description: '',
-  },
-  'color-bg-critical-strong-hover': {
-    value: colors.red[700],
-    description: '',
-  },
-  'color-bg-critical-strong': {
-    value: colors.red[600],
-    description: '',
-  },
-  'color-bg-critical-subdued-active': {
-    value: colors.red[200],
-    description: '',
-  },
-  'color-bg-critical': {
-    value: colors.red[200],
-    description: '',
-  },
-  'color-bg-critical-subdued': {
-    value: colors.red[100],
-    description: '',
-  },
-  'color-bg-critical-subdued-hover': {
-    value: colors.red[50],
-    description: '',
-  },
-  'color-bg-caution-strong': {
-    value: colors.yellow[600],
-    description: '',
-  },
-  'color-bg-caution': {
-    value: colors.yellow[300],
-    description: '',
-  },
-  'color-bg-caution-subdued-active': {
-    value: colors.yellow[200],
-    description: '',
-  },
-  'color-bg-caution-subdued': {
-    value: colors.yellow[100],
-    description: '',
-  },
-  'color-bg-caution-subdued-hover': {
-    value: colors.yellow[50],
-    description: '',
-  },
-  'color-bg-info-strong': {
-    value: colors.teal[600],
-    description: '',
-  },
-  'color-bg-info-subdued-active': {
-    value: colors.teal[200],
-    description: '',
-  },
-  'color-bg-info': {
-    value: colors.teal[200],
-    description: '',
-  },
-  'color-bg-info-subdued': {
-    value: colors.teal[100],
-    description: '',
-  },
-  'color-bg-info-subdued-hover': {
-    value: colors.teal[50],
-    description: '',
-  },
-  'color-bg-interactive-active': {
-    value: colors.blue[800],
-    description: '',
-  },
-  'color-bg-interactive-hover': {
-    value: colors.blue[700],
-    description: '',
-  },
-  'color-bg-interactive': {
-    value: colors.blue[600],
-    description: '',
-  },
-  'color-bg-interactive-subdued-active': {
-    value: colors.blue[200],
-    description: '',
-  },
-  'color-bg-interactive-subdued-hover': {
-    value: colors.blue[100],
-    description: '',
-  },
-  'color-bg-interactive-subdued': {
-    value: colors.blue[50],
-    description: '',
-  },
-  'color-bg-interactive-selected': {
-    value: colors.blue[50],
-    description: '',
-  },
-  'color-bg-warning': {
-    value: colors.orange[200],
-    description: '',
-  },
-  'color-bg-magic-strong': {
-    value: colors.purple[500],
-    description: '',
-  },
-  'color-bg-magic-hover': {
-    value: colors.purple[200],
-    description: '',
-  },
-  'color-bg-magic-active': {
-    value: colors.purple[300],
-    description: '',
-  },
-  'color-bg-magic': {
-    value: colors.purple[100],
-    description: '',
-  },
-  'color-bg-magic-subdued-hover': {
-    value: colors.purple[100],
-    description: '',
-  },
-  'color-bg-magic-subdued-active': {
-    value: colors.purple[200],
-    description: '',
-  },
-  'color-bg-magic-subdued': {
-    value: colors.purple[50],
-    description: '',
-  },
-  'color-border-input-hover': {
-    value: colors.gray[800],
-    description: '',
-  },
-  'color-border-inverse': {
-    value: colors.gray[800],
-    description: '',
-  },
-  'color-border-strong-hover': {
-    value: colors.gray[700],
-    description: '',
-  },
-  'color-border-input': {
-    value: colors.gray[600],
-    description: '',
-  },
-  'color-border-hover': {
-    value: colors.gray[600],
-    description: '',
-  },
-  'color-border-strong': {
-    value: colors.gray[600],
-    description: '',
-  },
-  'color-border': {
-    value: colors.gray[500],
-    description: '',
-  },
-  'color-border-disabled': {
-    value: colors.gray[400],
-    description: '',
-  },
-  'color-border-subdued': {
-    value: colors.gray[400],
-    description: '',
-  },
-  'color-border-interactive-disabled': {
-    value: colors.gray[400],
-    description: '',
-  },
-  'color-border-primary': {
-    value: colors.green[700],
-    description: '',
-  },
-  'color-border-success': {
-    value: colors.green[600],
-    description: '',
-  },
-  'color-border-success-subdued': {
-    value: colors.green[400],
-    description: '',
-  },
-  'color-border-critical-active': {
-    value: colors.red[900],
-    description: '',
-  },
-  'color-border-critical-hover': {
-    value: colors.red[800],
-    description: '',
-  },
-  'color-border-critical': {
-    value: colors.red[600],
-    description: '',
-  },
-  'color-border-critical-subdued': {
-    value: colors.red[400],
-    description: '',
-  },
-  'color-border-caution': {
-    value: colors.yellow[600],
-    description: '',
-  },
-  'color-border-caution-subdued': {
-    value: colors.yellow[400],
-    description: '',
-  },
-  'color-border-info': {
-    value: colors.teal[500],
-    description: '',
-  },
-  'color-border-info-subdued': {
-    value: colors.teal[400],
-    description: '',
-  },
-  'color-border-interactive-active': {
-    value: colors.blue[800],
-    description: '',
-  },
-  'color-border-interactive-hover': {
-    value: colors.blue[700],
-    description: '',
-  },
-  'color-border-interactive': {
-    value: colors.blue[500],
-    description: '',
-  },
-  'color-border-interactive-focus': {
-    value: colors.blue[500],
-    description: '',
-  },
-  'color-border-interactive-subdued': {
-    value: colors.blue[200],
-    description: '',
-  },
-  'color-border-magic-strong': {
-    value: colors.purple[500],
-    description: '',
-  },
-  'color-border-magic': {
-    value: colors.purple[400],
-    description: '',
-  },
-  'color-icon-hover': {
-    value: colors.gray[900],
-    description: '',
-  },
-  'color-icon': {
-    value: colors.gray[800],
-    description: '',
-  },
-  'color-icon-active': {
-    value: colors.gray[900],
-    description: '',
-  },
-  'color-icon-subdued': {
-    value: colors.gray[700],
-    description: '',
-  },
-  'color-icon-disabled': {
-    value: colors.gray[600],
-    description: '',
-  },
-  'color-icon-interactive-disabled': {
-    value: colors.gray[600],
-    description: '',
-  },
-  'color-icon-inverse': {
-    value: colors.gray[400],
-    description: '',
-  },
-  'color-icon-on-color': {
-    value: colors.gray[50],
-    description: '',
-  },
-  'color-icon-primary': {
-    value: colors.green[700],
-    description: '',
-  },
-  'color-icon-success': {
-    value: colors.green[600],
-    description: '',
-  },
-  'color-icon-critical': {
-    value: colors.red[600],
-    description: '',
-  },
-  'color-icon-caution': {
-    value: colors.yellow[700],
-    description: '',
-  },
-  'color-icon-info': {
-    value: colors.teal[600],
-    description: '',
-  },
-  'color-icon-warning': {
-    value: colors.orange[500],
-    description: '',
-  },
-  'color-icon-interactive-active': {
-    value: colors.blue[800],
-    description: '',
-  },
-  'color-icon-interactive-hover': {
-    value: colors.blue[700],
-    description: '',
-  },
-  'color-icon-interactive': {
-    value: colors.blue[600],
-    description: '',
-  },
-  'color-icon-interactive-inverse': {
-    value: colors.blue[400],
-    description: '',
-  },
-  'color-icon-magic': {
-    value: colors.purple[500],
-    description: '',
+    value: colors.blackAlpha[9],
+    description:
+      'The disabled state color of main actions, like primary buttons.',
+  },
+  'color-bg-fill-info': {
+    value: colors.azure[9],
+    description:
+      'Use for backgrounds communicating important information on elements with a smaller surface area, like a badge or button.',
+  },
+  'color-bg-fill-info-hover': {
+    value: colors.azure[10],
+    description:
+      'The hover state color for communicating important information on elements with a smaller surface area.',
+  },
+  'color-bg-fill-info-active': {
+    value: colors.azure[11],
+    description:
+      'The active state (on press) color for communicating important information on elements with a smaller surface area.',
+  },
+  'color-bg-fill-info-secondary': {
+    value: colors.azure[4],
+    description:
+      'Use for backgrounds communicating important information on elements with a smaller surface area, with a secondary level of prominence.',
+  },
+  'color-bg-fill-success': {
+    value: colors.green[12],
+    description: `Use for backgrounds communicating success on elements with a smaller surface area, like a badge or a banner.`,
+  },
+  'color-bg-fill-success-hover': {
+    value: colors.green[13],
+    description:
+      'The hover state color for communicating success on elements with a smaller surface area.',
+  },
+  'color-bg-fill-success-active': {
+    value: colors.green[14],
+    description:
+      'The active state (on press) color for communicating success on elements with a smaller surface area.',
+  },
+  'color-bg-fill-success-secondary': {
+    value: colors.green[3],
+    description:
+      'Use for backgrounds communicating success on elements with a smaller surface area, with a secondary level of prominence.',
+  },
+  'color-bg-fill-warning': {
+    value: colors.orange[9],
+    description:
+      'Use for backgrounds communicating warning on elements with a smaller surface area, like a badge or a banner.',
+  },
+  'color-bg-fill-warning-hover': {
+    value: colors.orange[10],
+    description:
+      'The hover state color for communicating warning on elements with a smaller surface area.',
+  },
+  'color-bg-fill-warning-active': {
+    value: colors.orange[11],
+    description:
+      'The active state (on press) color for communicating warning on elements with a smaller surface area.',
+  },
+  'color-bg-fill-warning-secondary': {
+    value: colors.orange[7],
+    description:
+      'Use for backgrounds communicating warning on elements with a smaller surface area, with a secondary level of prominence.',
+  },
+  'color-bg-fill-caution': {
+    value: colors.yellow[6],
+    description:
+      'Use for backgrounds communicating caution on elements with a smaller surface area, like a badge or a banner.',
+  },
+  'color-bg-fill-caution-hover': {
+    value: colors.yellow[8],
+    description:
+      'The hover state color for communicating caution on elements with a smaller surface area.',
+  },
+  'color-bg-fill-caution-active': {
+    value: colors.yellow[9],
+    description:
+      'The active state (on press) color for communicating caution on elements with a smaller surface area.',
+  },
+  'color-bg-fill-caution-secondary': {
+    value: colors.yellow[4],
+    description:
+      'Use for backgrounds communicating caution on elements with a smaller surface area, with a secondary level of prominence.',
+  },
+  'color-bg-fill-critical': {
+    value: colors.red[12],
+    description:
+      'Use for backgrounds communicating critical information on elements with a smaller surface area, like a badge or a banner.',
+  },
+  'color-bg-fill-critical-hover': {
+    value: colors.red[13],
+    description:
+      'The hover state color for communicating critical information on elements with a smaller surface area.',
+  },
+  'color-bg-fill-critical-active': {
+    value: colors.red[14],
+    description:
+      'The active state (on press) color for communicating critical information on elements with a smaller surface area.',
+  },
+  'color-bg-fill-critical-selected': {
+    value: colors.red[14],
+    description:
+      'The selected state color for communicating critical information on elements with a smaller surface area.',
+  },
+  'color-bg-fill-critical-secondary': {
+    value: colors.red[6],
+    description:
+      'Use for backgrounds communicating critical information on elements with a smaller surface area, with a secondary level of prominence.',
+  },
+  'color-bg-fill-emphasis': {
+    value: colors.blue[13],
+    description:
+      'Use for backgrounds indicating areas of focus in editors on elements with a smaller surface area, like a button or a badge.',
+  },
+  'color-bg-fill-emphasis-hover': {
+    value: colors.blue[14],
+    description:
+      'The hover state color for indicating areas of focus in editors on elements with a smaller surface area.',
+  },
+  'color-bg-fill-emphasis-active': {
+    value: colors.blue[15],
+    description:
+      'The active state (on press) color for indicating areas of focus in editors on elements with a smaller surface area.',
+  },
+  'color-bg-fill-magic': {
+    value: colors.purple[12],
+    description:
+      'The background color of elements suggested by magic AI, like a badge or a banner.',
+  },
+  'color-bg-fill-magic-secondary': {
+    value: colors.purple[6],
+    description:
+      'The background color of elements suggested by magic AI, with a secondary level of prominence.',
+  },
+  'color-bg-fill-magic-secondary-hover': {
+    value: colors.purple[7],
+    description:
+      'The hover state color of elements suggested by magic AI, with a secondary level of prominence.',
+  },
+  'color-bg-fill-magic-secondary-active': {
+    value: colors.purple[8],
+    description:
+      'The active state (on press) color of elements suggested by magic AI, with a secondary level of prominence.',
+  },
+  'color-bg-fill-inverse': {
+    value: colors.gray[15],
+    description:
+      'The background color of elements with a smaller surface area on an inverse background.',
+  },
+  'color-bg-fill-inverse-hover': {
+    value: colors.gray[14],
+    description:
+      'The hover state color of elements with a smaller surface area on an inverse background.',
+  },
+  'color-bg-fill-inverse-active': {
+    value: colors.gray[13],
+    description:
+      'The active state (on press) color of elements with a smaller surface area on an inverse background.',
+  },
+  'color-bg-fill-transparent': {
+    value: colors.blackAlpha[3],
+    description:
+      'The background color of elements that need to sit on different background colors, like tabs.',
+  },
+  'color-bg-fill-transparent-hover': {
+    value: colors.blackAlpha[5],
+    description:
+      'The hover state color of elements that need to sit on different background colors, like tabs.',
+  },
+  'color-bg-fill-transparent-active': {
+    value: colors.blackAlpha[7],
+    description:
+      'The active state (on press) color of elements that need to sit on different background colors, like tabs.',
+  },
+  'color-bg-fill-transparent-selected': {
+    value: colors.blackAlpha[7],
+    description:
+      'The selected state color of elements that need to sit on different background colors, like tabs.',
+  },
+  'color-bg-fill-transparent-secondary': {
+    value: colors.blackAlpha[6],
+    description:
+      'The background color of elements that need to sit on different background colors, with a secondary level of prominence.',
+  },
+  'color-bg-fill-transparent-secondary-hover': {
+    value: colors.blackAlpha[7],
+    description:
+      'The hover state color of elements that need to sit on different background colors, with a secondary level of prominence.',
+  },
+  'color-bg-fill-transparent-secondary-active': {
+    value: colors.blackAlpha[8],
+    description:
+      'The active state (on press) color of elements that need to sit on different background colors, with a secondary level of prominence.',
   },
   'color-text': {
-    value: colors.gray[900],
-    description: '',
+    value: colors.gray[15],
+    description: 'The default text color.',
   },
-  'color-text-subdued': {
-    value: colors.gray[800],
-    description: '',
+  'color-text-secondary': {
+    value: colors.gray[13],
+    description: 'Use for text with a secondary level of prominence.',
   },
   'color-text-disabled': {
-    value: colors.gray[700],
-    description: '',
+    value: colors.gray[11],
+    description: 'Use for text in a disabled state.',
   },
-  'color-text-interactive-disabled': {
-    value: colors.gray[700],
-    description: '',
+  'color-text-link': {
+    value: colors.blue[13],
+    description: 'Use for text links.',
   },
-  'color-text-inverse-subdued': {
-    value: colors.gray[600],
-    description: '',
+  'color-text-link-hover': {
+    value: colors.blue[14],
+    description: 'The hover state color for text links.',
   },
-  'color-text-inverse': {
-    value: colors.gray[200],
-    description: '',
+  'color-text-link-active': {
+    value: colors.blue[15],
+    description: 'The active state (on press) color for text links.',
   },
-  'color-text-on-color': {
-    value: colors.gray[50],
-    description: '',
+  'color-text-brand': {
+    value: colors.gray[14],
+    description: 'Use for text that needs to pull attention.',
   },
-  'color-text-success-strong': {
-    value: colors.green[900],
-    description: '',
+  'color-text-brand-hover': {
+    value: colors.gray[15],
+    description: 'The hover state color for text that needs to pull attention.',
   },
-  'color-text-success': {
-    value: colors.green[700],
-    description: '',
+  'color-text-brand-on-bg-fill': {
+    value: colors.gray[1],
+    description: 'Use for text on bg-fill-brand, like primary buttons.',
   },
-  'color-text-primary': {
-    value: colors.green[700],
-    description: '',
+  'color-text-brand-on-bg-fill-hover': {
+    value: colors.gray[8],
+    description: 'The hover state color for text on bg-fill-brand-hover.',
   },
-  'color-text-primary-hover': {
-    value: colors.green[800],
-    description: '',
+  'color-text-brand-on-bg-fill-active': {
+    value: colors.gray[10],
+    description: 'The active state (on press) color for text on bg-fill-brand.',
   },
-  'color-text-critical-strong': {
-    value: colors.red[900],
-    description: '',
-  },
-  'color-text-critical-active': {
-    value: colors.red[800],
-    description: '',
-  },
-  'color-text-critical': {
-    value: colors.red[600],
-    description: '',
-  },
-  'color-text-caution-strong': {
-    value: colors.yellow[900],
-    description: '',
-  },
-  'color-text-caution': {
-    value: colors.yellow[800],
-    description: '',
-  },
-  'color-text-info-strong': {
-    value: colors.teal[900],
-    description: '',
+  'color-text-brand-on-bg-fill-disabled': {
+    value: colors.gray[1],
+    description: 'The disabled state color for text on bg-fill-brand-disabled.',
   },
   'color-text-info': {
-    value: colors.teal[700],
-    description: '',
+    value: colors.azure[14],
+    description: 'Use for text communicating important information.',
   },
-  'color-text-warning-strong': {
-    value: colors.orange[900],
-    description: '',
+  'color-text-info-hover': {
+    value: colors.azure[15],
+    description:
+      'The hover state color for text communicating important information.',
   },
-  'color-text-interactive-active': {
-    value: colors.blue[800],
-    description: '',
+  'color-text-info-active': {
+    value: colors.azure[16],
+    description:
+      'The active state (on press) color for text communicating important information.',
   },
-  'color-text-interactive-hover': {
-    value: colors.blue[700],
-    description: '',
+  'color-text-info-on-bg-fill': {
+    value: colors.azure[16],
+    description: 'Use for text and icons on bg-fill-info.',
   },
-  'color-text-interactive': {
-    value: colors.blue[600],
-    description: '',
+  'color-text-success': {
+    value: colors.green[14],
+    description: 'Use for text communicating success.',
   },
-  'color-text-interactive-inverse': {
-    value: colors.blue[400],
-    description: '',
+  'color-text-success-hover': {
+    value: colors.green[15],
+    description: 'The hover state color for text communicating success.',
   },
-  'color-text-magic-strong': {
-    value: colors.purple[800],
-    description: '',
+  'color-text-success-active': {
+    value: colors.green[16],
+    description:
+      'The active state (on press) color for text communicating success.',
+  },
+  'color-text-success-on-bg-fill': {
+    value: colors.green[1],
+    description: 'Use for text and icons on bg-fill-success.',
+  },
+  'color-text-caution': {
+    value: colors.yellow[14],
+    description: 'Use for text communicating caution.',
+  },
+  'color-text-caution-hover': {
+    value: colors.yellow[15],
+    description: 'The hover state color for text communicating caution.',
+  },
+  'color-text-caution-active': {
+    value: colors.yellow[16],
+    description:
+      'The active state (on press) color for text communicating caution.',
+  },
+  'color-text-caution-on-bg-fill': {
+    value: colors.yellow[15],
+    description: 'Use for text and icons on bg-fill-caution.',
+  },
+  'color-text-warning': {
+    value: colors.orange[14],
+    description: 'Use for text communicating warning.',
+  },
+  'color-text-warning-hover': {
+    value: colors.orange[15],
+    description: 'The hover state color for text communicating warning.',
+  },
+  'color-text-warning-active': {
+    value: colors.orange[16],
+    description:
+      'The active state (on press) color for text communicating warning.',
+  },
+  'color-text-warning-on-bg-fill': {
+    value: colors.orange[16],
+    description: 'Use for text and icons on bg-fill-warning.',
+  },
+  'color-text-critical': {
+    value: colors.red[14],
+    description: 'Use for text communicating critical information.',
+  },
+  'color-text-critical-hover': {
+    value: colors.red[15],
+    description:
+      'The hover state color for text communicating critical information.',
+  },
+  'color-text-critical-active': {
+    value: colors.red[16],
+    description:
+      'The active state (on press) color for text communicating critical information.',
+  },
+  'color-text-critical-on-bg-fill': {
+    value: colors.red[1],
+    description: 'Use for text and icons on bg-fill-critical.',
+  },
+  'color-text-emphasis': {
+    value: colors.blue[13],
+    description:
+      'Use for text indicating areas of focus in editors, like the theme editor.',
+  },
+  'color-text-emphasis-hover': {
+    value: colors.blue[14],
+    description: 'The hover state color for text indicating areas of focus.',
+  },
+  'color-text-emphasis-active': {
+    value: colors.blue[15],
+    description:
+      'The active state (on press) color for text indicating areas of focus.',
+  },
+  'color-text-emphasis-on-bg-fill': {
+    value: colors.blue[1],
+    description: 'Use for text and icons on bg-fill-emphasis.',
+  },
+  'color-text-emphasis-on-bg-fill-hover': {
+    value: colors.blue[5],
+    description: 'Use for text and icons on bg-fill-emphasis-hover.',
+  },
+  'color-text-emphasis-on-bg-fill-active': {
+    value: colors.blue[7],
+    description: 'Use for text and icons on bg-fill-emphasis-active.',
   },
   'color-text-magic': {
-    value: colors.purple[600],
-    description: '',
+    value: colors.purple[14],
+    description: 'Use for text suggested by magic AI.',
   },
-  // Experimental tokens
-  'color-bg-backdrop-experimental': {
-    value: colorsExperimental.blackAlpha[14],
-    description: '',
+  'color-text-magic-on-bg-fill': {
+    value: colors.purple[1],
+    description: 'Use for text and icons on bg-fill-magic.',
   },
-  'color-bg-primary-disabled-experimental': {
-    value: colorsExperimental.gray[9],
-    description: '',
+  'color-text-inverse': {
+    value: colors.gray[8],
+    description: 'Use for text on an inverse background.',
   },
-  'color-bg-secondary-experimental': {
-    value: colorsExperimental.gray[5],
-    description: '',
+  'color-text-inverse-secondary': {
+    value: colors.gray[11],
+    description: 'Use for secondary text on an inverse background.',
   },
-  'color-bg-input-hover-experimental': {
-    value: colorsExperimental.gray[3],
-    description: '',
+  'color-text-link-inverse': {
+    value: colors.blue[8],
+    description: 'Use for text links on an inverse background.',
   },
-  'color-border-input-active-experimental': {
-    value: colorsExperimental.gray[16],
+  'color-border': {
+    value: colors.gray[8],
+    description: 'The default color for borders on any element.',
   },
-  'color-border-critical-strong-experimental': {
-    value: colorsExperimental.red[14],
+  'color-border-hover': {
+    value: colors.gray[10],
+    description: 'The hover color for borders on any element.',
   },
-  'color-bg-input-active-experimental': {
-    value: colorsExperimental.gray[4],
-    description: '',
+  'color-border-disabled': {
+    value: colors.gray[7],
+    description: 'The disabled color for borders on any element.',
   },
-  'color-bg-transparent-experimental': {
-    value: colorsExperimental.blackAlpha[1],
-    description: '',
+  'color-border-secondary': {
+    value: colors.gray[7],
+    description: 'The color for hr elements or any visual dividers.',
   },
-  'color-bg-transparent-subdued-experimental': {
-    value: colorsExperimental.blackAlpha[6],
-    description: '',
+  'color-border-tertiary': {
+    value: colors.gray[10],
+    description:
+      'The border color on any element. Pair with bg-surface-tertiary or bg-fill-tertiary.',
   },
-  'color-bg-transparent-hover-experimental': {
-    value: colorsExperimental.blackAlpha[5],
-    description: '',
+  'color-border-focus': {
+    value: colors.blue[13],
+    description:
+      'The focus ring for any interactive element in a focused state.',
   },
-  'color-bg-transparent-active-experimental': {
-    value: colorsExperimental.blackAlpha[6],
-    description: '',
+  'color-border-brand': {
+    value: colors.gray[8],
+    description: 'Use for borders paired with brand colors.',
   },
-  'color-bg-transparent-disabled-experimental': {
-    value: colorsExperimental.blackAlpha[5],
-    description: '',
+  'color-border-info': {
+    value: colors.azure[8],
+    description: 'Use for borders communicating information.',
   },
-  'color-bg-transparent-secondary-disabled-experimental': {
-    value: colorsExperimental.blackAlpha[7],
-    description: '',
+  'color-border-success': {
+    value: colors.green[5],
+    description: 'Use for borders communicating success.',
   },
-  'color-bg-transparent-primary-disabled-experimental': {
-    value: colorsExperimental.blackAlpha[9],
-    description: '',
+  'color-border-caution': {
+    value: colors.yellow[5],
+    description: 'Use for borders communicating caution.',
   },
-  'color-bg-transparent-primary-experimental': {
-    value: colorsExperimental.blackAlpha[13],
-    description: '',
+  'color-border-warning': {
+    value: colors.orange[8],
+    description: 'Use for borders communicating warning.',
   },
-  'color-bg-success-strong-hover-experimental': {
-    value: colorsExperimental.green[13],
-    description: '',
+  'color-border-critical': {
+    value: colors.red[8],
+    description: 'Use for borders communicating critical information.',
   },
-  'color-bg-success-strong-active-experimental': {
-    value: colorsExperimental.green[14],
-    description: '',
+  'color-border-critical-secondary': {
+    value: colors.red[14],
+    description:
+      'Use for borders communicating critical information, such as borders on invalid text fields.',
   },
-  'color-bg-warning-subdued-experimental': {
-    value: colorsExperimental.orange[3],
-    description: '',
+  'color-border-emphasis': {
+    value: colors.blue[13],
+    description: 'Use for borders indicating areas of focus.',
   },
-  'color-bg-warning-strong-experimental': {
-    value: colorsExperimental.orange[9],
-    description: '',
+  'color-border-emphasis-hover': {
+    value: colors.blue[14],
+    description: 'The hover state color for borders indicating areas of focus.',
   },
-  'color-text-warning-experimental': {
-    value: colorsExperimental.orange[15],
-    description: '',
+  'color-border-emphasis-active': {
+    value: colors.blue[15],
+    description:
+      'The active state (on press) color for borders indicating areas of focus.',
   },
-  'color-text-critical-hover-experimental': {
-    value: colorsExperimental.red[15],
-    description: '',
+  'color-border-magic': {
+    value: colors.purple[10],
+    description: 'Use for borders suggested by magic AI.',
   },
-  'color-icon-info-strong-experimental': {
-    value: colorsExperimental.azure[14],
-    description: '',
+  'color-border-magic-secondary': {
+    value: colors.purple[12],
+    description:
+      'Use for borders suggested by magic AI, such as borders on text fields.',
   },
-  'color-icon-warning-strong-experimental': {
-    value: colorsExperimental.orange[13],
-    description: '',
+  'color-border-inverse': {
+    value: colors.gray[13],
+    description:
+      'Use for borders on an inverse background, such as borders on the global search.',
   },
-  'color-icon-success-strong-experimental': {
-    value: colorsExperimental.green[14],
-    description: '',
+  'color-border-inverse-hover': {
+    value: colors.gray[10],
+    description: 'The hover state color for borders on an inverse background.',
   },
-  'color-icon-critical-strong-experimental': {
-    value: colorsExperimental.red[14],
-    description: '',
+  'color-border-inverse-active': {
+    value: colors.gray[8],
+    description:
+      'The active state (on press) color for borders on an inverse background.',
   },
-  'color-icon-critical-strong-hover-experimental': {
-    value: colorsExperimental.red[15],
-    description: '',
+  'color-icon': {
+    value: colors.gray[14],
+    description: 'The default color for icons.',
   },
-  'color-icon-critical-strong-active-experimental': {
-    value: colorsExperimental.red[16],
-    description: '',
+  'color-icon-hover': {
+    value: colors.gray[15],
+    description: 'The hover state color for icons.',
   },
-  'color-avatar-background-experimental': {
-    value: colorsExperimental.gray[11],
-    description: '',
+  'color-icon-active': {
+    value: colors.gray[16],
+    description: 'The active state (on press) color for icons.',
   },
-  'color-avatar-color-experimental': {
-    value: colorsExperimental.gray[1],
-    description: '',
+  'color-icon-disabled': {
+    value: colors.gray[10],
+    description: 'The disabled state color for icons.',
   },
-  'color-avatar-style-one-background-experimental': {
-    value: colorsExperimental.magenta[7],
-    description: '',
+  'color-icon-secondary': {
+    value: colors.gray[12],
+    description: 'Use for secondary icons.',
   },
-  'color-avatar-style-one-color-experimental': {
-    value: colorsExperimental.magenta[14],
-    description: '',
+  'color-icon-secondary-hover': {
+    value: colors.gray[13],
+    description: 'The hover state color for secondary icons.',
   },
-  'color-avatar-style-two-background-experimental': {
-    value: colorsExperimental.green[7],
-    description: '',
+  'color-icon-secondary-active': {
+    value: colors.gray[14],
+    description: 'The active state (on press) color for secondary icons.',
   },
-  'color-avatar-style-two-color-experimental': {
-    value: colorsExperimental.green[14],
-    description: '',
+  'color-icon-brand': {
+    value: colors.gray[16],
+    description: 'Use for icons that need to pull more focus.',
   },
-  'color-avatar-style-three-background-experimental': {
-    value: colorsExperimental.cyan[7],
-    description: '',
+  'color-icon-info': {
+    value: colors.azure[11],
+    description: 'Use for icons communicating information.',
   },
-  'color-avatar-style-three-color-experimental': {
-    value: colorsExperimental.cyan[14],
-    description: '',
+  'color-icon-success': {
+    value: colors.green[12],
+    description: 'Use for icons communicating success.',
   },
-  'color-avatar-style-four-background-experimental': {
-    value: colorsExperimental.azure[7],
-    description: '',
+  'color-icon-caution': {
+    value: colors.yellow[11],
+    description: 'Use for icons communicating caution.',
   },
-  'color-avatar-style-four-color-experimental': {
-    value: colorsExperimental.azure[14],
-    description: '',
+  'color-icon-warning': {
+    value: colors.orange[11],
+    description: 'Use for icons communicating warning.',
   },
-  'color-avatar-style-five-background-experimental': {
-    value: colorsExperimental.rose[7],
-    description: '',
+  'color-icon-critical': {
+    value: colors.red[11],
+    description: 'Use for icons communicating critical information.',
   },
-  'color-avatar-style-five-color-experimental': {
-    value: colorsExperimental.rose[14],
-    description: '',
+  'color-icon-emphasis': {
+    value: colors.blue[13],
+    description:
+      'Use for icons indicating areas of focus in editors, like the theme editor.',
+  },
+  'color-icon-emphasis-hover': {
+    value: colors.blue[14],
+    description:
+      'The hover color for icons indicating areas of focus in editors.',
+  },
+  'color-icon-emphasis-active': {
+    value: colors.blue[15],
+    description:
+      'The active state (on press) color for icons indicating areas of focus in editors.',
+  },
+  'color-icon-magic': {
+    value: colors.purple[12],
+    description: 'Use for icons suggested by magic AI.',
+  },
+  'color-icon-inverse': {
+    value: colors.gray[8],
+    description: 'Use for icons on an inverse background.',
+  },
+  'color-avatar-bg-fill': {
+    value: colors.gray[11],
+  },
+  'color-avatar-five-bg-fill': {
+    value: colors.rose[7],
+  },
+  'color-avatar-five-text-on-bg-fill': {
+    value: colors.rose[14],
+  },
+  'color-avatar-four-bg-fill': {
+    value: colors.azure[7],
+  },
+  'color-avatar-four-text-on-bg-fill': {
+    value: colors.azure[14],
+  },
+  'color-avatar-one-bg-fill': {
+    value: colors.magenta[7],
+  },
+  'color-avatar-one-text-on-bg-fill': {
+    value: colors.magenta[14],
+  },
+  'color-avatar-text-on-bg-fill': {
+    value: colors.gray[1],
+  },
+  'color-avatar-three-bg-fill': {
+    value: colors.cyan[7],
+  },
+  'color-avatar-three-text-on-bg-fill': {
+    value: colors.cyan[14],
+  },
+  'color-avatar-two-bg-fill': {
+    value: colors.green[7],
+  },
+  'color-avatar-two-text-on-bg-fill': {
+    value: colors.green[14],
+  },
+  'color-backdrop-bg': {
+    value: colors.blackAlpha[14],
+  },
+  'color-checkbox-bg-surface-disabled': {
+    value: colors.blackAlpha[7],
+  },
+  'color-checkbox-icon-disabled': {
+    value: colors.gray[1],
+  },
+  'color-input-bg-surface': {
+    value: colors.gray[2],
+  },
+  'color-input-bg-surface-hover': {
+    value: colors.gray[3],
+  },
+  'color-input-bg-surface-active': {
+    value: colors.gray[4],
+  },
+  'color-input-border': {
+    value: colors.gray[12],
+  },
+  'color-input-border-hover': {
+    value: colors.gray[13],
+  },
+  'color-input-border-active': {
+    value: colors.gray[16],
+  },
+  'color-nav-bg': {
+    value: colors.gray[7],
+  },
+  'color-nav-bg-surface': {
+    value: colors.blackAlpha[3],
+  },
+  'color-nav-bg-surface-hover': {
+    value: colors.gray[6],
+  },
+  'color-nav-bg-surface-active': {
+    value: colors.gray[3],
+  },
+  'color-nav-bg-surface-selected': {
+    value: colors.gray[3],
+  },
+  'color-radio-button-bg-surface-disabled': {
+    value: colors.blackAlpha[7],
+  },
+  'color-radio-button-icon-disabled': {
+    value: colors.gray[1],
+  },
+  'color-video-thumbnail-play-button-bg-fill-hover': {
+    value: colors.blackAlpha[15],
+  },
+  'color-video-thumbnail-play-button-bg-fill': {
+    value: colors.blackAlpha[14],
+  },
+  'color-video-thumbnail-play-button-text-on-bg-fill': {
+    value: colors.gray[1],
   },
 };
-
-function createVar(colorTokenName: ColorTokenName) {
-  return `var(${createVarName(colorTokenName)})`;
-}
