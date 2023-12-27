@@ -192,6 +192,10 @@
           "za": "Z-A"
         }
       },
+      "EditColumnsButton": {
+        "tooltip": "Edit columns",
+        "accessibilityLabel": "Customize table column order and visibility"
+      },
       "UpdateButtons": {
         "cancel": "Cancel",
         "update": "Update",
@@ -238,7 +242,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "View actions for {title}"
+        "rollupActionsLabel": "View actions for {title}",
+        "pageReadyAccessibilityLabel": "{title}. This page is ready"
       }
     },
     "Pagination": {
@@ -276,8 +281,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Actions",
-        "moreActionsActivatorLabel": "More actions",
-        "warningMessage": "To provide a better user experience. There should only be a maximum of {maxPromotedActions} promoted actions."
+        "moreActionsActivatorLabel": "More actions"
       }
     },
     "SkeletonPage": {

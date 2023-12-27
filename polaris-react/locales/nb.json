@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Handlinger",
-        "moreActionsActivatorLabel": "Flere handlinger",
-        "warningMessage": "For å gi en bedre brukeropplevelse. Det bør ikke være mer enn {maxPromotedActions} promoterte handlinger."
+        "moreActionsActivatorLabel": "Flere handlinger"
       },
       "showingTotalCount": "Viser {itemsCount} av {totalItemsCount} {resource}",
       "allFilteredItemsSelected": "Alle {itemsLength} + {resourceNamePlural} i dette filteret er valgt",
@@ -349,7 +348,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Vis handlinger for {title}"
+        "rollupActionsLabel": "Vis handlinger for {title}",
+        "pageReadyAccessibilityLabel": "{title}. Denne siden er klar"
       }
     },
     "FullscreenBar": {
@@ -389,6 +389,10 @@
           "save": "Lagre",
           "cancel": "Avbryt"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "Endre kolonner",
+        "accessibilityLabel": "Tilpass kolonnerekkefølge og -synlighet i tabellen"
       }
     },
     "ActionList": {

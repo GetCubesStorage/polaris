@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "İşlemler",
-        "moreActionsActivatorLabel": "Diğer işlemler",
-        "warningMessage": "Daha iyi bir kullanıcı deneyimi sunmak için. Öne çıkarılan işlemlerin sayısı en fazla {maxPromotedActions} olmalıdır."
+        "moreActionsActivatorLabel": "Diğer işlemler"
       },
       "showingTotalCount": "{totalItemsCount} {resource} içinden {itemsCount} tanesi gösteriliyor",
       "allFilteredItemsSelected": "Bu filtredeki {itemsLength}+ {resourceNamePlural} tümü seçildi",
@@ -349,7 +348,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "{title} ile ilgili işlemleri görüntüle"
+        "rollupActionsLabel": "{title} ile ilgili işlemleri görüntüle",
+        "pageReadyAccessibilityLabel": "{title}. Bu sayfa hazır"
       }
     },
     "FullscreenBar": {
@@ -389,6 +389,10 @@
           "save": "Kaydet",
           "cancel": "İptal"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "Sütunları düzenleyin",
+        "accessibilityLabel": "Tablonun sütun sırasını ve görünürlüğünü özelleştirin"
       }
     },
     "ActionList": {

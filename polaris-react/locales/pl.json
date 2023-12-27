@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Czynności",
-        "moreActionsActivatorLabel": "Więcej czynności",
-        "warningMessage": "Aby zapewnić większy komfort użytkowania, maksymalna liczba promowanych czynności powinna wynosić tylko {maxPromotedActions}."
+        "moreActionsActivatorLabel": "Więcej czynności"
       },
       "showingTotalCount": "Wyświetlanie {itemsCount} z {totalItemsCount} {resource}",
       "allFilteredItemsSelected": "Zaznaczono wszystkie {itemsLength}+ {resourceNamePlural} w tym filtrze",
@@ -351,7 +350,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Wyświetl czynności dla {title}"
+        "rollupActionsLabel": "Wyświetl czynności dla {title}",
+        "pageReadyAccessibilityLabel": "{title}. Ta strona jest gotowa"
       }
     },
     "FullscreenBar": {
@@ -391,6 +391,10 @@
           "save": "Zapisz",
           "cancel": "Anuluj"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "Edytuj kolumny",
+        "accessibilityLabel": "Dostosuj kolejność i widoczność kolumn tabeli"
       }
     },
     "ActionList": {

@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Acties",
-        "moreActionsActivatorLabel": "Meer acties",
-        "warningMessage": "Om een betere gebruikerservaring te bieden, zouden er maximaal {maxPromotedActions} gepromote acties moeten zijn."
+        "moreActionsActivatorLabel": "Meer acties"
       },
       "showingTotalCount": "{itemsCount} van {totalItemsCount} {resource} zichtbaar",
       "allFilteredItemsSelected": "Alle {itemsLength}+ {resourceNamePlural} in dit filter zijn geselecteerd",
@@ -349,7 +348,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Acties voor {title} bekijken"
+        "rollupActionsLabel": "Acties voor {title} bekijken",
+        "pageReadyAccessibilityLabel": "{title}. Deze pagina is klaar"
       }
     },
     "FullscreenBar": {
@@ -389,6 +389,10 @@
           "save": "Opslaan",
           "cancel": "Annuleren"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "Kolommen bewerken",
+        "accessibilityLabel": "Kolomvolgorde en zichtbaarheid van tabel aanpassen"
       }
     },
     "ActionList": {

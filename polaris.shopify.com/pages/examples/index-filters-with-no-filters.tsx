@@ -196,7 +196,11 @@ function IndexFiltersWithNoFiltersExample() {
         </IndexTable.Cell>
         <IndexTable.Cell>{date}</IndexTable.Cell>
         <IndexTable.Cell>{customer}</IndexTable.Cell>
-        <IndexTable.Cell>{total}</IndexTable.Cell>
+        <IndexTable.Cell>
+          <Text as="span" alignment="end" numeric>
+            {total}
+          </Text>
+        </IndexTable.Cell>
         <IndexTable.Cell>{paymentStatus}</IndexTable.Cell>
         <IndexTable.Cell>{fulfillmentStatus}</IndexTable.Cell>
       </IndexTable.Row>
@@ -211,7 +215,7 @@ function IndexFiltersWithNoFiltersExample() {
         queryValue={queryValue}
         queryPlaceholder="Searching in all"
         onQueryChange={handleFiltersQueryChange}
-        onQueryClear={() => {}}
+        onQueryClear={() => setQueryValue('')}
         onSort={setSortSelected}
         primaryAction={primaryAction}
         cancelAction={{

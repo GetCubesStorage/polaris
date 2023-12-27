@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Akce",
-        "moreActionsActivatorLabel": "Další akce",
-        "warningMessage": "Chceme zlepšit uživatelské zkušenosti. Propagačních akcí by mělo být maximálně {maxPromotedActions}."
+        "moreActionsActivatorLabel": "Další akce"
       },
       "showingTotalCount": "Zobrazuje se tento počet: {itemsCount} z {totalItemsCount} ({resource})",
       "allFilteredItemsSelected": "V tomto filtru byly vybrány veškeré položky typu {resourceNamePlural}: {itemsLength}",
@@ -351,7 +350,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Zobrazte akce pro: {title}"
+        "rollupActionsLabel": "Zobrazte akce pro: {title}",
+        "pageReadyAccessibilityLabel": "{title}. Tato stránka je připravena."
       }
     },
     "FullscreenBar": {
@@ -391,7 +391,11 @@
           "cancel": "Zrušit"
         }
       },
-      "searchFilterTooltipWithShortcut": "Hledejte a filtrujte (F)"
+      "searchFilterTooltipWithShortcut": "Hledejte a filtrujte (F)",
+      "EditColumnsButton": {
+        "tooltip": "Upravit sloupce",
+        "accessibilityLabel": "Přizpůsobit pořadí a viditelnost sloupců tabulky"
+      }
     },
     "ActionList": {
       "SearchField": {

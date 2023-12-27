@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/Shopify/polaris/issues"
   },
-  "version": "0.8.0",
+  "version": "0.9.2",
   "private": true,
   "keywords": [
     "polaris",
@@ -38,16 +38,15 @@
     "clean": "rm -rf .turbo node_modules dist *.tsbuildinfo"
   },
   "dependencies": {
-    "vscode-languageclient": "^8.0.1",
-    "vscode-languageserver": "^8.0.1",
-    "vscode-languageserver-textdocument": "^1.0.4"
+    "@shopify/polaris-tokens": "^8.4.0",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11"
   },
   "devDependencies": {
-    "@shopify/polaris-tokens": "^8.0.1",
-    "@types/node": "14.x",
+    "@types/node": "16.x",
     "@types/vscode": "^1.64.0",
-    "@vscode/test-electron": "^2.1.2",
     "globby": "^11.1.0",
-    "vsce": "^2.7.0"
+    "vsce": "^2.15.0"
   }
 }

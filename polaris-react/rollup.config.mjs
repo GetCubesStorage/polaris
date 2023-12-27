@@ -1,4 +1,7 @@
+// Vite is used by Storybook.
+// Rollup is used directly to build for prod.
 import { readFileSync } from 'fs';
+
 import * as path from 'path';
 
 import { babel } from '@rollup/plugin-babel';
@@ -10,7 +13,8 @@ import image from '@rollup/plugin-image';
 import json from '@rollup/plugin-json';
 
 import { styles } from './config/rollup/plugin-styles.js';
-import { generateScopedName } from './config/rollup/namespaced-classname.js';
+import { generateScopedName } from './config/rollup/namespaced-classname.mjs';
+
 import postcssPlugins from './config/postcss-plugins.js';
 
 const pkg = JSON.parse(
@@ -50,6 +54,20 @@ function generateConfig({ output, targets, stylesConfig }) {
   };
 }
 
+function entryFileNames(ext) {
+  return (chunkInfo) => {
+    // To preserve backwards compatibility with previous Polaris versions,
+    // CSS Modules should be `<Name>.scss.esnext`, never
+    // `<Name>.module.scss.esnext`
+    if (chunkInfo.name.endsWith('.module.scss')) {
+      return `${chunkInfo.name.replace(/\.module\.scss$/, '.scss')}.${ext}`;
+    }
+
+    // Use regular pattern matching for everything else
+    return `[name].${ext}`;
+  };
+}
+
 /** @type {import('rollup').RollupOptions} */
 export default [
   generateConfig({
@@ -70,20 +88,20 @@ export default [
         format: 'cjs',
         dir: path.dirname(pkg.main),
         preserveModules: true,
-        entryFileNames: '[name].js',
+        entryFileNames: entryFileNames('js'),
         exports: 'named',
       },
       {
         format: 'esm',
         dir: path.dirname(pkg.module),
         preserveModules: true,
-        entryFileNames: '[name].js',
+        entryFileNames: entryFileNames('js'),
       },
       {
         format: 'esm',
         dir: path.dirname(pkg.types),
         preserveModules: true,
-        entryFileNames: '[name].js',
+        entryFileNames: entryFileNames('js'),
       },
     ],
   }),

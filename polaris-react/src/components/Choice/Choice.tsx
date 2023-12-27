@@ -6,13 +6,14 @@ import {
   getResponsiveValue,
   classNames,
   sanitizeCustomProperties,
+  variationName,
 } from '../../utilities/css';
 import type {ResponsiveProp} from '../../utilities/css';
 import type {Error} from '../../types';
 import {InlineError} from '../InlineError';
 import {Text} from '../Text';
 
-import styles from './Choice.scss';
+import styles from './Choice.module.scss';
 
 type Spacing = ResponsiveProp<SpaceScale>;
 
@@ -70,6 +71,8 @@ interface ChoiceProps extends ChoiceBleedProps {
   error?: Error | boolean;
   /** Additional text to aide in use. Will add a wrapping <div> */
   helpText?: React.ReactNode;
+  /** Indicates the tone of the choice */
+  tone?: 'magic';
 }
 
 export function Choice({
@@ -88,11 +91,13 @@ export function Choice({
   bleedBlockEnd,
   bleedInlineStart,
   bleedInlineEnd,
+  tone,
 }: ChoiceProps) {
   const className = classNames(
     styles.Choice,
     labelHidden && styles.labelHidden,
     disabled && styles.disabled,
+    tone && styles[variationName('tone', tone)],
     labelClassName,
   );
 

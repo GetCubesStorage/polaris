@@ -3,7 +3,7 @@ import type {ReactNode} from 'react';
 
 import {classNames} from '../../utilities/css';
 
-import styles from './Text.scss';
+import styles from './Text.module.scss';
 
 type Element =
   | 'dt'
@@ -26,6 +26,7 @@ type Variant =
   | 'headingXl'
   | 'heading2xl'
   | 'heading3xl'
+  | 'bodyXs'
   | 'bodySm'
   | 'bodyMd'
   | 'bodyLg';
@@ -34,7 +35,14 @@ type Alignment = 'start' | 'center' | 'end' | 'justify';
 
 type FontWeight = 'regular' | 'medium' | 'semibold' | 'bold';
 
-type Tone = 'success' | 'critical' | 'caution' | 'subdued' | 'text-inverse';
+type Tone =
+  | 'success'
+  | 'critical'
+  | 'caution'
+  | 'subdued'
+  | 'text-inverse'
+  | 'magic'
+  | 'magic-subdued';
 
 type TextDecorationLine = 'line-through';
 
