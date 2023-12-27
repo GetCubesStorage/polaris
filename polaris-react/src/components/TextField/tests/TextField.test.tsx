@@ -8,7 +8,7 @@ import {Select} from '../../Select';
 import {Tag} from '../../Tag';
 import {Resizer, Spinner} from '../components';
 import {TextField} from '../TextField';
-import styles from '../TextField.scss';
+import styles from '../TextField.module.scss';
 import {Key} from '../../../types';
 
 describe('<TextField />', () => {
@@ -112,6 +112,28 @@ describe('<TextField />', () => {
       );
 
       textField.find('input')!.domNode?.dispatchEvent(event);
+      expect(onClick).toHaveBeenCalled();
+    });
+
+    it('bubbles up to the parent element when it occurs in the textarea', () => {
+      const onClick = jest.fn();
+      const event = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      const textField = mountWithApp(
+        <div onClick={onClick}>
+          <TextField
+            type="text"
+            label="TextField"
+            autoComplete="off"
+            multiline
+          />
+        </div>,
+      );
+
+      textField.find('textarea')!.domNode?.dispatchEvent(event);
       expect(onClick).toHaveBeenCalled();
     });
 
@@ -226,6 +248,55 @@ describe('<TextField />', () => {
       );
       element.find('input')!.trigger('onBlur');
       expect(spy).toHaveBeenCalled();
+    });
+
+    it('is called when the Spinner is blurred', () => {
+      const spy = jest.fn();
+      const element = mountWithApp(
+        <TextField
+          label="TextField"
+          onBlur={spy}
+          onChange={noop}
+          type="number"
+          autoComplete="off"
+        />,
+      );
+      element.find(Spinner)!.trigger('onBlur');
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('is not called when the input is blurred and focus moves to the Spinner', () => {
+      const spy = jest.fn();
+      const element = mountWithApp(
+        <TextField
+          label="TextField"
+          onBlur={spy}
+          onChange={noop}
+          type="number"
+          autoComplete="off"
+        />,
+      );
+      const relatedTarget = element.find(Spinner)!.domNode;
+
+      element.find('input')!.trigger('onBlur', {relatedTarget});
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('is not called when the Spinner is blurred and focus moves to the input', () => {
+      const spy = jest.fn();
+      const element = mountWithApp(
+        <TextField
+          label="TextField"
+          onBlur={spy}
+          onChange={noop}
+          type="number"
+          autoComplete="off"
+        />,
+      );
+      const relatedTarget = element.find('input')!.domNode;
+
+      element.find(Spinner)!.trigger('onBlur', {relatedTarget});
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 

@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "アクション",
-        "moreActionsActivatorLabel": "その他の操作",
-        "warningMessage": "さらに優れたユーザーエクスペリエンスのために。プロモートアクションは最大で{maxPromotedActions}回までです。"
+        "moreActionsActivatorLabel": "その他の操作"
       },
       "showingTotalCount": "{totalItemsCount}の{itemsCount}、{resource}を表示中",
       "allFilteredItemsSelected": "この絞り込み内の{itemsLength}と{resourceNamePlural}がすべて選択されます",
@@ -349,7 +348,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "{title}のアクションを表示"
+        "rollupActionsLabel": "{title}のアクションを表示",
+        "pageReadyAccessibilityLabel": "{title}。このページの準備が整いました"
       }
     },
     "FullscreenBar": {
@@ -389,6 +389,10 @@
           "save": "保存",
           "cancel": "キャンセル"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "列を編集",
+        "accessibilityLabel": "表の列の順序および表示をカスタマイズする"
       }
     },
     "ActionList": {

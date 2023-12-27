@@ -165,6 +165,11 @@ export function WithActions() {
               onPrimaryAction: () => {},
             },
             {
+              type: 'edit-columns' as AlphaTabAction,
+              onAction: () => {},
+              onPrimaryAction: () => {},
+            },
+            {
               type: 'delete' as AlphaTabAction,
               onAction: () => {},
               onPrimaryAction: () => {},

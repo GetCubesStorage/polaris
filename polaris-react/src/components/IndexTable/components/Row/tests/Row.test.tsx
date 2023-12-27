@@ -12,7 +12,7 @@ import {Checkbox} from '../../Checkbox';
 import {Button} from '../../../../Button';
 import {Link} from '../../../../Link';
 import {Checkbox as PolarisCheckbox} from '../../../../Checkbox';
-import styles from '../../../IndexTable.scss';
+import styles from '../../../IndexTable.module.scss';
 import type {Range} from '../../../../../utilities/index-provider';
 
 const defaultEvent = {
@@ -167,6 +167,20 @@ describe('<Row />', () => {
         triggerOnClick(row, 1, defaultEvent);
 
         expect(onSelectionChangeSpy).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when a `rowType` of `child` is set', () => {
+      it('applies the .TableRow-child class to the table row element', () => {
+        const row = mountWithTable(
+          <Row id="id" selected rowType="child" position={1}>
+            <td />
+          </Row>,
+        );
+
+        expect(row.find(Row)?.find('tr')?.prop('className')).toContain(
+          styles['TableRow-child'],
+        );
       });
     });
   });

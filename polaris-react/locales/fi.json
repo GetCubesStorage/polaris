@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Toiminnat",
-        "moreActionsActivatorLabel": "Lisää toimintoja",
-        "warningMessage": "Paremman käyttäjäkokemuksen tarjoamiseksi. Mainostettavia toimintoja saa olla enintään {maxPromotedActions}."
+        "moreActionsActivatorLabel": "Lisää toimintoja"
       },
       "showingTotalCount": "Näytetään {itemsCount}/{totalItemsCount} {resource}",
       "allFilteredItemsSelected": "Kaikki tämän suodattimen {itemsLength} {resourceNamePlural} on valittu",
@@ -349,7 +348,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Tarkastele nimikettä {title} koskevia toimintoja"
+        "rollupActionsLabel": "Tarkastele nimikettä {title} koskevia toimintoja",
+        "pageReadyAccessibilityLabel": "{title}. Tämä sivu on valmis"
       }
     },
     "FullscreenBar": {
@@ -389,7 +389,11 @@
           "cancel": "Peruuta"
         }
       },
-      "searchFilterTooltipWithShortcut": "Hae ja suodata (F)"
+      "searchFilterTooltipWithShortcut": "Hae ja suodata (F)",
+      "EditColumnsButton": {
+        "tooltip": "Muokkaa sarakkeita",
+        "accessibilityLabel": "Muokkaa taulukon sarakkeiden järjestystä ja näkyvyyttä"
+      }
     },
     "ActionList": {
       "SearchField": {

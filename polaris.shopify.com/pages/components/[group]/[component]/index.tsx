@@ -13,14 +13,10 @@ import Markdown from '../../../../src/components/Markdown';
 import Page from '../../../../src/components/Page';
 import {toPascalCase} from '../../../../src/utils/various';
 import PageMeta from '../../../../src/components/PageMeta';
-import type {
-  Status,
-  FilteredTypes,
-  AllTypes,
-  SerializedMdx,
-} from '../../../../src/types';
+import type {Status, FilteredTypes, SerializedMdx} from '../../../../src/types';
 import PropsTable from '../../../../src/components/PropsTable';
 import {getRelevantTypes} from '../../../../scripts/get-props/src/get-props';
+import allType from '../../../../.cache/props';
 
 type FrontMatter = {
   status?: Status;
@@ -82,7 +78,7 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   const componentSlug = context.params?.component;
   const groupSlug = context.params?.group;
-  const relativeMdPath = `content/components/${groupSlug}/${componentSlug}.md`;
+  const relativeMdPath = `content/components/${groupSlug}/${componentSlug}.mdx`;
 
   const mdFilePath = path.resolve(process.cwd(), relativeMdPath);
   const editPageLinkPath = `polaris.shopify.com/${relativeMdPath}`;
@@ -125,10 +121,6 @@ export const getStaticProps: GetStaticProps<
       ),
     );
 
-    const propsFilePath = path.resolve(process.cwd(), `.cache/props.json`);
-    const fileContent = fs.readFileSync(propsFilePath, 'utf8');
-    const allType: AllTypes = JSON.parse(fileContent);
-
     const componentDirName = toPascalCase(`${mdx.frontmatter.title} `);
     const propName = toPascalCase(`${mdx.frontmatter.title} Props`);
 
@@ -154,12 +146,12 @@ export const getStaticProps: GetStaticProps<
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const globPath = path.resolve(process.cwd(), 'content/components/**/*.md');
+  const globPath = path.resolve(process.cwd(), 'content/components/**/*.mdx');
   const paths = globby
     .sync(globPath)
-    .filter((path) => !path.endsWith('index.md'))
+    .filter((path) => !path.endsWith('index.mdx'))
     .map((path) =>
-      path.replace(`${process.cwd()}/content`, '').replace('.md', ''),
+      path.replace(`${process.cwd()}/content`, '').replace('.mdx', ''),
     );
 
   return {

@@ -1,4 +1,4 @@
-import type {MetaTokenProperties} from '../types';
+import type { MetaTokenProperties } from '../types';
 
 export type ShadowScale = '0' | '100' | '200' | '300' | '400' | '500' | '600';
 
@@ -31,6 +31,8 @@ export type ShadowTokenName =
 export type ShadowTokenGroup = {
   [TokenName in ShadowTokenName]: string;
 };
+
+const primery = 'hsl(200deg 100% 45%)';
 
 export const shadow: {
   [TokenName in ShadowTokenName]: MetaTokenProperties;
@@ -82,38 +84,63 @@ export const shadow: {
   },
   'shadow-button-primary': {
     value:
-      '0px 2px 0px 0px rgba(255, 255, 255, 0.2) inset, 2px 0px 0px 0px rgba(255, 255, 255, 0.2) inset, -2px 0px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px -1px 0px 1px #000 inset, 0px 1px 0px 0px #000 inset',
+      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, ' +
+      '-1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
   },
   'shadow-button-primary-hover': {
     value:
-      '0px 1px 0px 0px rgba(255, 255, 255, 0.24) inset, 1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, -1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, 0px -1px 0px 0px #000 inset, 0px -1px 0px 1px #1A1A1A',
+      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, ' +
+      '1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '-1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
   },
   'shadow-button-primary-inset': {
-    value: '0px 3px 0px 0px #000 inset',
+    value:
+      '0px 2px 0px 0px rgba(0, 0, 0, 0.60) inset, ' +
+      '1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset, ' +
+      '-1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset',
   },
   'shadow-button-primary-critical': {
     value:
-      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, -1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, 1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, 0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
+      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, ' +
+      '-1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
   },
   'shadow-button-primary-critical-hover': {
     value:
-      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, 1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, -1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, 0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
+      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, ' +
+      '1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '-1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
   },
   'shadow-button-primary-critical-inset': {
     value:
-      '0px 2px 0px 0px rgba(0, 0, 0, 0.60) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset, -1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset',
+      '0px 2px 0px 0px rgba(0, 0, 0, 0.60) inset, ' +
+      '1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset, ' +
+      '-1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset',
   },
   'shadow-button-primary-success': {
     value:
-      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, -1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, 1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, 0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
+      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, ' +
+      '-1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
   },
   'shadow-button-primary-success-hover': {
     value:
-      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, 1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, -1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, 0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
+      '0px 1px 0px 0px rgba(255, 255, 255, 0.48) inset, ' +
+      '1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '-1px 0px 0px 0px rgba(255, 255, 255, 0.20) inset, ' +
+      '0px -1.5px 0px 0px rgba(0, 0, 0, 0.25) inset',
   },
   'shadow-button-primary-success-inset': {
     value:
-      '0px 2px 0px 0px rgba(0, 0, 0, 0.60) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset, -1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset',
+      '0px 2px 0px 0px rgba(0, 0, 0, 0.60) inset, ' +
+      '1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset, ' +
+      '-1px 0px 1px 0px rgba(0, 0, 0, 0.20) inset',
   },
   'shadow-border-inset': {
     value: '0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset',

@@ -1,16 +1,17 @@
 import React from 'react';
 
 import {classNames} from '../../../../../../utilities/css';
+import {Bleed} from '../../../../../Bleed';
 import {Text} from '../../../../../Text';
 
-import styles from './Title.scss';
+import styles from './Title.module.scss';
 
 export interface TitleProps {
   /** Page title, in large type */
   title?: string;
   /** Page subtitle, in regular type */
   subtitle?: string;
-  /** Important and non-interactive status information shown immediately after the title. */
+  /** Important status information shown immediately after the title. */
   titleMetadata?: React.ReactNode;
   /** Removes spacing between title and subtitle */
   compactTitle?: boolean;
@@ -30,16 +31,14 @@ export function Title({
   const titleMarkup = title ? <h1 className={className}>{title}</h1> : null;
 
   const titleMetadataMarkup = titleMetadata ? (
-    <div className={styles.TitleMetadata}>{titleMetadata}</div>
+    <Bleed marginBlock="100">{titleMetadata}</Bleed>
   ) : null;
 
-  const wrappedTitleMarkup = titleMetadata ? (
-    <div className={styles.TitleWithMetadataWrapper}>
+  const wrappedTitleMarkup = (
+    <div className={styles.TitleWrapper}>
       {titleMarkup}
       {titleMetadataMarkup}
     </div>
-  ) : (
-    titleMarkup
   );
 
   const subtitleMarkup = subtitle ? (

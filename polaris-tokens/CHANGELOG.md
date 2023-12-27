@@ -1,5 +1,45 @@
 # Changelog
 
+## 8.4.0
+
+### Minor Changes
+
+- [#11275](https://github.com/Shopify/polaris/pull/11275) [`4a7e090bc`](https://github.com/Shopify/polaris/commit/4a7e090bca1c9f5c647f53a93832424ff1cfcf82) Thanks [@yurm04](https://github.com/yurm04)! - Updated semantic tokens `fill-info-secondary`, `text-info`, `fill-success-secondary`, `fill-caution-secondary`, `fill-critical-secondary`.
+
+## 8.3.0
+
+### Minor Changes
+
+- [#11303](https://github.com/Shopify/polaris/pull/11303) [`d0babcc9b`](https://github.com/Shopify/polaris/commit/d0babcc9b15b8ef8251425795bec26e876f03756) Thanks [@ardakaracizmeli](https://github.com/ardakaracizmeli)! - - Remapped the `bg-fill-magic-secondary` token colors
+  - Added a Magic `tone` to `Badge`
+
+## 8.2.0
+
+### Minor Changes
+
+- [#11173](https://github.com/Shopify/polaris/pull/11173) [`c58632afa`](https://github.com/Shopify/polaris/commit/c58632afa1141c467533b7564e725f99ebbed71c) Thanks [@jesstelford](https://github.com/jesstelford)! - Add 0 tokens where missing as per [the team's decision](https://github.com/Shopify/polaris/discussions/7334#discussioncomment-4988991).
+
+* [#11261](https://github.com/Shopify/polaris/pull/11261) [`32cfbecb1`](https://github.com/Shopify/polaris/commit/32cfbecb136f57077bb5beefb58a4cc554dc8f71) Thanks [@lgriffee](https://github.com/lgriffee)! - Updated `Avatar` background and text colors
+
+- [#11219](https://github.com/Shopify/polaris/pull/11219) [`97683ac05`](https://github.com/Shopify/polaris/commit/97683ac052fcc69c6f689520c15fde555d14fbfa) Thanks [@matallo](https://github.com/matallo)! - - Bumped `color-text-magic-secondary` to purple 13
+  - Added `tone` prop with `magic` value to `Select`
+  - Added `magic` value to `tone` prop of `Text`
+  - Added `magic-subdued` value to `tone` prop of `Text`
+
+* [#10790](https://github.com/Shopify/polaris/pull/10790) [`fe8491507`](https://github.com/Shopify/polaris/commit/fe8491507f7cd77af6866bd6f5d49229923dbad0) Thanks [@sophschneider](https://github.com/sophschneider)! - Add support for using breakpoint tokens in CSS by using `@custom-media`
+
+## 8.1.0
+
+### Minor Changes
+
+- [#11087](https://github.com/Shopify/polaris/pull/11087) [`23055adcf`](https://github.com/Shopify/polaris/commit/23055adcfa97decbfbc51924bd121d1dae76ac6f) Thanks [@matallo](https://github.com/matallo)! - Added `--p-color-border-magic-secondary-hover` token
+
+## 8.0.2
+
+### Patch Changes
+
+- [#10602](https://github.com/Shopify/polaris/pull/10602) [`73b1d5d2c`](https://github.com/Shopify/polaris/commit/73b1d5d2ccf0a9f203fdf045b752dfbf536aeee5) Thanks [@patrickDouglas](https://github.com/patrickDouglas)! - Export types missing for the Typescript Compiler (tsc) when using Node16/Bundler Module Resolution.
+
 ## 8.0.1
 
 ### Patch Changes

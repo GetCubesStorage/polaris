@@ -102,6 +102,8 @@ export type ColorBackgroundAlias =
   | 'avatar-five-bg-fill'
   | 'avatar-four-bg-fill'
   | 'avatar-one-bg-fill'
+  | 'avatar-seven-bg-fill'
+  | 'avatar-six-bg-fill'
   | 'avatar-three-bg-fill'
   | 'avatar-two-bg-fill'
   | 'backdrop-bg'
@@ -134,6 +136,7 @@ export type ColorBorderAlias =
   | 'border-inverse-hover'
   | 'border-inverse'
   | 'border-magic-secondary'
+  | 'border-magic-secondary-hover'
   | 'border-magic'
   | 'border-secondary'
   | 'border-success'
@@ -175,10 +178,12 @@ export type ColorTextAlias =
   | 'text-brand-on-bg-fill-hover'
   | 'text-brand-on-bg-fill'
   | 'text-brand'
+  | 'text-caution-secondary'
   | 'text-caution-active'
   | 'text-caution-hover'
   | 'text-caution-on-bg-fill'
   | 'text-caution'
+  | 'text-critical-secondary'
   | 'text-critical-active'
   | 'text-critical-hover'
   | 'text-critical-on-bg-fill'
@@ -190,6 +195,7 @@ export type ColorTextAlias =
   | 'text-emphasis-on-bg-fill-hover'
   | 'text-emphasis-on-bg-fill'
   | 'text-emphasis'
+  | 'text-info-secondary'
   | 'text-info-active'
   | 'text-info-hover'
   | 'text-info-on-bg-fill'
@@ -202,11 +208,14 @@ export type ColorTextAlias =
   | 'text-link'
   | 'text-magic-on-bg-fill'
   | 'text-magic'
+  | 'text-magic-secondary'
   | 'text-secondary'
+  | 'text-success-secondary'
   | 'text-success-active'
   | 'text-success-hover'
   | 'text-success-on-bg-fill'
   | 'text-success'
+  | 'text-warning-secondary'
   | 'text-warning-active'
   | 'text-warning-hover'
   | 'text-warning-on-bg-fill'
@@ -216,6 +225,8 @@ export type ColorTextAlias =
   | 'avatar-five-text-on-bg-fill'
   | 'avatar-four-text-on-bg-fill'
   | 'avatar-one-text-on-bg-fill'
+  | 'avatar-seven-text-on-bg-fill'
+  | 'avatar-six-text-on-bg-fill'
   | 'avatar-text-on-bg-fill'
   | 'avatar-three-text-on-bg-fill'
   | 'avatar-two-text-on-bg-fill'
@@ -399,15 +410,15 @@ export const color: {
       'The active state (on press) color for elements indicating areas of focus in editors.',
   },
   'color-bg-surface-magic': {
-    value: colors.purple[3],
+    value: colors.purple[2],
     description: 'Use for backgrounds of elements suggested by magic AI.',
   },
   'color-bg-surface-magic-hover': {
-    value: colors.purple[4],
+    value: colors.purple[3],
     description: 'The hover state color for elements suggested by magic AI.',
   },
   'color-bg-surface-magic-active': {
-    value: colors.purple[6],
+    value: colors.purple[5],
     description:
       'The active state (on press) color for elements suggested by magic AI.',
   },
@@ -513,7 +524,7 @@ export const color: {
       'The active state (on press) color for communicating important information on elements with a smaller surface area.',
   },
   'color-bg-fill-info-secondary': {
-    value: colors.azure[4],
+    value: colors.azure[5],
     description:
       'Use for backgrounds communicating important information on elements with a smaller surface area, with a secondary level of prominence.',
   },
@@ -532,7 +543,7 @@ export const color: {
       'The active state (on press) color for communicating success on elements with a smaller surface area.',
   },
   'color-bg-fill-success-secondary': {
-    value: colors.green[3],
+    value: colors.green[4],
     description:
       'Use for backgrounds communicating success on elements with a smaller surface area, with a secondary level of prominence.',
   },
@@ -572,7 +583,7 @@ export const color: {
       'The active state (on press) color for communicating caution on elements with a smaller surface area.',
   },
   'color-bg-fill-caution-secondary': {
-    value: colors.yellow[4],
+    value: colors.yellow[5],
     description:
       'Use for backgrounds communicating caution on elements with a smaller surface area, with a secondary level of prominence.',
   },
@@ -597,7 +608,7 @@ export const color: {
       'The selected state color for communicating critical information on elements with a smaller surface area.',
   },
   'color-bg-fill-critical-secondary': {
-    value: colors.red[6],
+    value: colors.red[7],
     description:
       'Use for backgrounds communicating critical information on elements with a smaller surface area, with a secondary level of prominence.',
   },
@@ -622,17 +633,17 @@ export const color: {
       'The background color of elements suggested by magic AI, like a badge or a banner.',
   },
   'color-bg-fill-magic-secondary': {
-    value: colors.purple[6],
+    value: colors.purple[5],
     description:
       'The background color of elements suggested by magic AI, with a secondary level of prominence.',
   },
   'color-bg-fill-magic-secondary-hover': {
-    value: colors.purple[7],
+    value: colors.purple[6],
     description:
       'The hover state color of elements suggested by magic AI, with a secondary level of prominence.',
   },
   'color-bg-fill-magic-secondary-active': {
-    value: colors.purple[8],
+    value: colors.purple[7],
     description:
       'The active state (on press) color of elements suggested by magic AI, with a secondary level of prominence.',
   },
@@ -735,7 +746,7 @@ export const color: {
     description: 'The disabled state color for text on bg-fill-brand-disabled.',
   },
   'color-text-info': {
-    value: colors.azure[14],
+    value: colors.azure[15],
     description: 'Use for text communicating important information.',
   },
   'color-text-info-hover': {
@@ -747,6 +758,11 @@ export const color: {
     value: colors.azure[16],
     description:
       'The active state (on press) color for text communicating important information.',
+  },
+  'color-text-info-secondary': {
+    value: colors.azure[12],
+    description:
+      'Use for text communicating important information with a secondary level of prominence.',
   },
   'color-text-info-on-bg-fill': {
     value: colors.azure[16],
@@ -765,6 +781,11 @@ export const color: {
     description:
       'The active state (on press) color for text communicating success.',
   },
+  'color-text-success-secondary': {
+    value: colors.green[12],
+    description:
+      'Use for text communicating success with a secondary level of prominence.',
+  },
   'color-text-success-on-bg-fill': {
     value: colors.green[1],
     description: 'Use for text and icons on bg-fill-success.',
@@ -781,6 +802,11 @@ export const color: {
     value: colors.yellow[16],
     description:
       'The active state (on press) color for text communicating caution.',
+  },
+  'color-text-caution-secondary': {
+    value: colors.yellow[12],
+    description:
+      'Use for text communicating caution with a secondary level of prominence.',
   },
   'color-text-caution-on-bg-fill': {
     value: colors.yellow[15],
@@ -799,6 +825,11 @@ export const color: {
     description:
       'The active state (on press) color for text communicating warning.',
   },
+  'color-text-warning-secondary': {
+    value: colors.orange[12],
+    description:
+      'Use for text communicating warning with a secondary level of prominence.',
+  },
   'color-text-warning-on-bg-fill': {
     value: colors.orange[16],
     description: 'Use for text and icons on bg-fill-warning.',
@@ -816,6 +847,11 @@ export const color: {
     value: colors.red[16],
     description:
       'The active state (on press) color for text communicating critical information.',
+  },
+  'color-text-critical-secondary': {
+    value: colors.red[12],
+    description:
+      'Use for text communicating critical information with a secondary level of prominence.',
   },
   'color-text-critical-on-bg-fill': {
     value: colors.red[1],
@@ -850,6 +886,11 @@ export const color: {
   'color-text-magic': {
     value: colors.purple[14],
     description: 'Use for text suggested by magic AI.',
+  },
+  'color-text-magic-secondary': {
+    value: colors.purple[13],
+    description:
+      'Use for text suggested by magic AI with a secondary level of prominence.',
   },
   'color-text-magic-on-bg-fill': {
     value: colors.purple[1],
@@ -936,10 +977,15 @@ export const color: {
       'The active state (on press) color for borders indicating areas of focus.',
   },
   'color-border-magic': {
-    value: colors.purple[10],
+    value: colors.purple[6],
     description: 'Use for borders suggested by magic AI.',
   },
   'color-border-magic-secondary': {
+    value: colors.purple[11],
+    description:
+      'Use for borders suggested by magic AI, such as borders on text fields.',
+  },
+  'color-border-magic-secondary-hover': {
     value: colors.purple[12],
     description:
       'Use for borders suggested by magic AI, such as borders on text fields.',
@@ -1037,31 +1083,43 @@ export const color: {
     value: colors.gray[11],
   },
   'color-avatar-five-bg-fill': {
-    value: colors.rose[7],
+    value: colors.rose[11],
   },
   'color-avatar-five-text-on-bg-fill': {
-    value: colors.rose[14],
+    value: colors.rose[2],
   },
   'color-avatar-four-bg-fill': {
-    value: colors.azure[7],
+    value: colors.azure[10],
   },
   'color-avatar-four-text-on-bg-fill': {
-    value: colors.azure[14],
+    value: colors.azure[16],
   },
   'color-avatar-one-bg-fill': {
-    value: colors.magenta[7],
+    value: colors.magenta[12],
   },
   'color-avatar-one-text-on-bg-fill': {
-    value: colors.magenta[14],
+    value: colors.magenta[3],
+  },
+  'color-avatar-seven-bg-fill': {
+    value: colors.purple[11],
+  },
+  'color-avatar-seven-text-on-bg-fill': {
+    value: colors.purple[2],
+  },
+  'color-avatar-six-bg-fill': {
+    value: colors.lime[9],
+  },
+  'color-avatar-six-text-on-bg-fill': {
+    value: colors.lime[15],
   },
   'color-avatar-text-on-bg-fill': {
     value: colors.gray[1],
   },
   'color-avatar-three-bg-fill': {
-    value: colors.cyan[7],
+    value: colors.teal[9],
   },
   'color-avatar-three-text-on-bg-fill': {
-    value: colors.cyan[14],
+    value: colors.teal[15],
   },
   'color-avatar-two-bg-fill': {
     value: colors.green[7],

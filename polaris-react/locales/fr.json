@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Actions",
-        "moreActionsActivatorLabel": "Autres actions",
-        "warningMessage": "Pour fournir une meilleure expérience utilisateur. Il ne doit y avoir que {maxPromotedActions} actions promues au maximum."
+        "moreActionsActivatorLabel": "Autres actions"
       },
       "showingTotalCount": "{itemsCount} sur {totalItemsCount} {resource} sont affichés",
       "allFilteredItemsSelected": "La totalité des {itemsLength}+ {resourceNamePlural} de ce filtre est sélectionnée",
@@ -350,7 +349,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Afficher les actions pour {title}"
+        "rollupActionsLabel": "Afficher les actions pour {title}",
+        "pageReadyAccessibilityLabel": "{title}. Cette page est prête"
       }
     },
     "FullscreenBar": {
@@ -390,6 +390,10 @@
           "save": "Enregistrer",
           "cancel": "Annuler"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "Modifier les colonnes",
+        "accessibilityLabel": "Personnaliser l’ordre et la visibilité des colonnes du tableau"
       }
     },
     "ActionList": {

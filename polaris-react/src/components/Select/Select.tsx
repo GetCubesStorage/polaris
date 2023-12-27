@@ -1,15 +1,16 @@
-import React, {useId} from 'react';
+import React, {useCallback, useId} from 'react';
 import {SelectMinor} from '@shopify/polaris-icons';
 
-import {classNames} from '../../utilities/css';
+import {classNames, variationName} from '../../utilities/css';
 import {Labelled, helpTextID} from '../Labelled';
 import type {LabelledProps} from '../Labelled';
 import {Box} from '../Box';
 import {Icon} from '../Icon';
 import {Text} from '../Text';
 import type {Error} from '../../types';
+import {useToggle} from '../../utilities/use-toggle';
 
-import styles from './Select.scss';
+import styles from './Select.module.scss';
 
 interface StrictOption {
   /** Machine value of the option; this is the value passed to `onChange` */
@@ -20,6 +21,8 @@ interface StrictOption {
   disabled?: boolean;
   /** Element to display to the left of the option label. Does not show in the dropdown. */
   prefix?: React.ReactNode;
+  /** Unique key applied to the option element. Defaults to option value prop when undefined. */
+  key?: string;
 }
 
 interface HideableStrictOption extends StrictOption {
@@ -68,11 +71,13 @@ export interface SelectProps {
   /** Callback when selection is changed */
   onChange?(selected: string, id: string): void;
   /** Callback when select is focused */
-  onFocus?(): void;
+  onFocus?(event?: React.FocusEvent<HTMLSelectElement>): void;
   /** Callback when focus is removed */
-  onBlur?(): void;
+  onBlur?(event?: React.FocusEvent<HTMLSelectElement>): void;
   /** Visual required indicator, add an asterisk to label */
   requiredIndicator?: boolean;
+  /** Indicates the tone of the select */
+  tone?: 'magic';
 }
 
 const PLACEHOLDER_VALUE = '';
@@ -94,7 +99,10 @@ export function Select({
   onFocus,
   onBlur,
   requiredIndicator,
+  tone,
 }: SelectProps) {
+  const {value: focused, toggle: toggleFocused} = useToggle(false);
+
   const uniqId = useId();
   const id = idProp ?? uniqId;
   const labelHidden = labelInline ? true : labelHiddenProp;
@@ -102,7 +110,24 @@ export function Select({
   const className = classNames(
     styles.Select,
     error && styles.error,
+    tone && styles[variationName('tone', tone)],
     disabled && styles.disabled,
+  );
+
+  const handleFocus = useCallback(
+    (event: React.FocusEvent<HTMLSelectElement>) => {
+      toggleFocused();
+      onFocus?.(event);
+    },
+    [onFocus, toggleFocused],
+  );
+
+  const handleBlur = useCallback(
+    (event: React.FocusEvent<HTMLSelectElement>) => {
+      toggleFocused();
+      onBlur?.(event);
+    },
+    [onBlur, toggleFocused],
   );
 
   const handleChange = onChange
@@ -134,7 +159,13 @@ export function Select({
 
   const inlineLabelMarkup = labelInline && (
     <Box paddingInlineEnd="100">
-      <Text as="span" tone="subdued" truncate>
+      <Text
+        as="span"
+        tone={
+          tone && tone === 'magic' && !focused ? 'magic-subdued' : 'subdued'
+        }
+        truncate
+      >
         {label}
       </Text>
     </Box>
@@ -177,8 +208,8 @@ export function Select({
           value={value}
           className={styles.Input}
           disabled={disabled}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           onChange={handleChange}
           aria-invalid={Boolean(error)}
           aria-describedby={
@@ -272,9 +303,9 @@ function flattenOptions(
 }
 
 function renderSingleOption(option: HideableStrictOption): React.ReactNode {
-  const {value, label, prefix: _prefix, ...rest} = option;
+  const {value, label, prefix: _prefix, key, ...rest} = option;
   return (
-    <option key={value} value={value} {...rest}>
+    <option key={key ?? value} value={value} {...rest}>
       {label}
     </option>
   );

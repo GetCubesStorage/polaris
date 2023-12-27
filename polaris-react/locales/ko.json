@@ -196,8 +196,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "작업",
-        "moreActionsActivatorLabel": "기타 작업",
-        "warningMessage": "더 나은 사용자 환경을 제공하려면 프로모션 작업의 수가 {maxPromotedActions}개 이하여야 합니다."
+        "moreActionsActivatorLabel": "기타 작업"
       },
       "showingTotalCount": "{resource} {totalItemsCount}개 중 {itemsCount}개 표시",
       "allFilteredItemsSelected": "이 필터에서 길이가 {itemsLength}보다 긴 {resourceNamePlural}을(를) 모두 선택했습니다.",
@@ -349,7 +348,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "{title} 작업 보기"
+        "rollupActionsLabel": "{title} 작업 보기",
+        "pageReadyAccessibilityLabel": "{title}. 이 페이지가 준비되었습니다"
       }
     },
     "FullscreenBar": {
@@ -389,6 +389,10 @@
           "save": "저장",
           "cancel": "취소"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "열 편집",
+        "accessibilityLabel": "표의 주문 열 및 표시 방법 사용자 지정"
       }
     },
     "ActionList": {

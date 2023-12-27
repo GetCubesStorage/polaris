@@ -199,8 +199,7 @@
       },
       "BulkActions": {
         "actionsActivatorLabel": "Thao tác",
-        "moreActionsActivatorLabel": "Thao tác khác",
-        "warningMessage": "Để mang đến trải nghiệm tốt hơn cho người dùng. Chỉ nên có tối đa {maxPromotedActions} thao tác quảng cáo."
+        "moreActionsActivatorLabel": "Thao tác khác"
       }
     },
     "SkeletonPage": {
@@ -349,7 +348,8 @@
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Xem thao tác đối với {title}"
+        "rollupActionsLabel": "Xem thao tác đối với {title}",
+        "pageReadyAccessibilityLabel": "{title}. Trang này đã sẵn sàng"
       }
     },
     "FullscreenBar": {
@@ -389,6 +389,10 @@
           "save": "Lưu",
           "cancel": "Hủy"
         }
+      },
+      "EditColumnsButton": {
+        "tooltip": "Sửa cột",
+        "accessibilityLabel": "Tùy chỉnh thứ tự và khả năng hiển thị của cột trong bảng"
       }
     },
     "ActionList": {

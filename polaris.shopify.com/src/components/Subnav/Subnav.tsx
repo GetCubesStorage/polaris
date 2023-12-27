@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import navJSON from '../../../.cache/nav.json';
-import {NavJSON, NavItem} from '../../types';
+import nav from '../../../.cache/nav';
+import {NavItem} from '../../types';
 import {className} from '../../utils/various';
 
 import styles from './Subnav.module.scss';
@@ -9,13 +9,27 @@ import {useRouter} from 'next/router';
 import {Icon} from '@shopify/polaris';
 import * as polarisIcons from '@shopify/polaris-icons';
 import icons from '../../icons';
+import {useEffect, useState} from 'react';
 
 type PolarisIcon = keyof typeof polarisIcons;
-const nav = navJSON.children as NavJSON;
+
+interface NavObject {
+  [key: string]: NavItem;
+}
+
+type NavObjects = NavObject | undefined;
 
 function Subnav() {
   const {asPath} = useRouter();
-  const navItems = getNavItems(asPath);
+  const [navItems, setNavItems] = useState<NavObjects>();
+
+  /**
+   * We need to run this on the client side because anchor links are not passed
+   * to the server
+   */
+  useEffect(() => {
+    setNavItems(getNavItems(asPath));
+  }, [asPath]);
 
   if (!navItems) {
     console.warn('No subnav items found for path:', asPath);
@@ -57,10 +71,17 @@ function Subnav() {
 }
 
 function getNavItems(path: string): {[key: string]: NavItem} | undefined {
+  const anchor = path.indexOf('#');
+
+  // remove the anchor link from path if exists
+  if (anchor >= 0) {
+    path = path.substring(0, anchor);
+  }
+
   const paths = path.split('/').filter((segment) => segment);
 
   const navItemPath = paths.join('.children.');
-  const currentNavItem = getObjectValue<NavItem>(nav, navItemPath);
+  const currentNavItem = getObjectValue<NavItem>(nav.children, navItemPath);
 
   const isOverviewPage = currentNavItem?.children !== undefined;
 
@@ -68,7 +89,7 @@ function getNavItems(path: string): {[key: string]: NavItem} | undefined {
   const parentItemPath = paths.slice(0, -1).join('.children.');
   const parentNavItem = isOverviewPage
     ? currentNavItem
-    : getObjectValue<NavItem>(nav, parentItemPath);
+    : getObjectValue<NavItem>(nav.children, parentItemPath);
 
   // Return if we're on a page that doesn't have a subnav
   if (!parentNavItem) return;
