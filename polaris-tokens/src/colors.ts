@@ -289,3 +289,20 @@ export const blackAlpha: ColorAlpha = {
   15: 'rgba(0, 0, 0, 0.81)',
   16: 'rgba(0, 0, 0, 0.90)',
 };
+
+function keys<T extends {}>(a: T): (keyof T)[] {
+  return Object.keys(a as any) as any;
+}
+if (false && !(globalThis as any)["window"]) {
+
+  keys(exports).forEach((k) => {
+    const arr = keys(exports[k]);
+    const rev = keys(exports[k]).reverse();
+    const res: any = {};
+    arr.forEach((_e, i) => {
+      res[rev[i]] = exports[k][arr[i]];
+    });
+    Object.assign(exports[k], res);
+  });
+  console.log(keys(exports));
+}

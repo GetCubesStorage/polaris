@@ -9,6 +9,12 @@
   "javascript.validate.enable": false,
   "jest.autoRun": "off",
   "scss.validate": false,
-  "stylelint.validate": ["scss", "css"],
-  "typescript.tsdk": "./node_modules/typescript/lib"
+  "stylelint.validate": [
+    "scss",
+    "css"
+  ],
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  }
 }
