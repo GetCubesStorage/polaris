@@ -93,6 +93,12 @@ export default [
         preserveModules: true,
         entryFileNames: entryFileNames('js'),
       },
+      {
+        format: 'esm',
+        dir: path.dirname(pkg.types),
+        preserveModules: true,
+        entryFileNames: entryFileNames('js'),
+      },
     ],
   }),
   generateConfig({

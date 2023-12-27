@@ -2,7 +2,7 @@
   "extends": "@shopify/typescript-configs/library",
   "compilerOptions": {
     "composite": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "importsNotUsedAsValues": "error",
     "outDir": "build/ts",
     "rootDir": "./",

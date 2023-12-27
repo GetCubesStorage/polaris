@@ -12,6 +12,7 @@ module.exports.styles = function styles({
   mode,
   include = ['**/*.css', '**/*.scss'],
   exclude = [],
+  outputStyle = 'compact',
 } = {}) {
   if (!['standalone', 'esnext'].includes(mode)) {
     throw new Error(
@@ -152,7 +153,7 @@ module.exports.styles = function styles({
           .renderSync({
             data: source,
             file: id,
-            outputStyle: 'compact',
+            outputStyle,
             includePaths: [path.dirname(id)],
           })
           .css.toString();
