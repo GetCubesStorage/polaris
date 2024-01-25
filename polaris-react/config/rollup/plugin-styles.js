@@ -10,6 +10,7 @@ module.exports.styles = function styles({
   plugins = [],
   modules = {},
   mode,
+  outputStyle = 'compact',
   include = ['**/*.css', '**/*.scss'],
   exclude = [],
 } = {}) {
@@ -152,7 +153,7 @@ module.exports.styles = function styles({
           .renderSync({
             data: source,
             file: id,
-            outputStyle: 'compact',
+            outputStyle,
             includePaths: [path.dirname(id)],
           })
           .css.toString();
