@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {
   createElement,
   useState,
@@ -187,6 +188,15 @@ interface NonMutuallyExclusiveProps {
   autoSize?: boolean;
   /** Indicates the loading state */
   loading?: boolean;
+
+
+  renderInputField?(
+    props?: React.InputHTMLAttributes<HTMLInputElement> & React.ClassAttributes<HTMLInputElement> | null
+  ): React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  renderTextarea?<P extends React.HTMLAttributes<HTMLTextAreaElement>>(
+    props?: React.ClassAttributes<HTMLTextAreaElement> & P | null
+  ): React.DetailedReactHTMLElement<P, HTMLTextAreaElement>;
+
 }
 
 export type MutuallyExclusiveSelectionProps =
@@ -257,6 +267,8 @@ export function TextField({
   tone,
   autoSize,
   loading,
+  renderInputField = props => createElement("input", props),
+  renderTextarea = props => createElement("textarea", props),
 }: TextFieldProps) {
   const i18n = useI18n();
   const [height, setHeight] = useState<number | null>(null);
@@ -350,12 +362,12 @@ export function TextField({
     const characterCount = normalizedValue.length;
     const characterCountLabel = maxLength
       ? i18n.translate('Polaris.TextField.characterCountWithMaxLength', {
-          count: characterCount,
-          limit: maxLength,
-        })
+        count: characterCount,
+        limit: maxLength,
+      })
       : i18n.translate('Polaris.TextField.characterCount', {
-          count: characterCount,
-        });
+        count: characterCount,
+      });
 
     const characterCountClassName = classNames(
       styles.CharacterCount,
@@ -481,10 +493,10 @@ export function TextField({
   const style =
     multiline && height
       ? {
-          height,
-          maxHeight,
-        }
-      : null;
+        height,
+        maxHeight,
+      }
+      : undefined;
 
   const handleExpandingResize = useCallback((height: number) => {
     setHeight(height);
@@ -560,7 +572,7 @@ export function TextField({
     }
   }
 
-  const input = createElement(multiline ? 'textarea' : 'input', {
+  const input = (multiline ? renderTextarea : renderInputField)({
     name,
     id,
     disabled,
@@ -572,7 +584,7 @@ export function TextField({
     style,
     autoComplete,
     className: inputClassName,
-    ref: multiline ? textAreaRef : inputRef,
+    ref: (multiline ? textAreaRef : inputRef) as any,
     min,
     max,
     step,
@@ -589,7 +601,7 @@ export function TextField({
     'aria-invalid': Boolean(error),
     'aria-owns': ariaOwns,
     'aria-activedescendant': ariaActiveDescendant,
-    'aria-autocomplete': ariaAutocomplete,
+    'aria-autocomplete': ariaAutocomplete as any,
     'aria-controls': ariaControls,
     'aria-expanded': ariaExpanded,
     'aria-required': requiredIndicator,
@@ -680,7 +692,7 @@ export function TextField({
     </Labelled>
   );
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: { currentTarget: { value: string } }) {
     onChange && onChange(event.currentTarget.value, id);
   }
 

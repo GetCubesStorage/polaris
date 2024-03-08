@@ -15,4 +15,5 @@ rm -rf ../cubes-admin/polaris-react/src/
 cp -r polaris-react/build/ts/src ../cubes-admin/polaris-react
 cp -r polaris-react/locales ../cubes-admin/polaris-react
 cp polaris-react/build/esm/styles.css ../cubes-admin/polaris-react
+(cd ../cubes-admin/polaris-react && npx tsc)
 node ./polaris-react/build-for-cubes.js
