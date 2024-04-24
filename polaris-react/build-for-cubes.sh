@@ -4,16 +4,14 @@ set -u # exit script if a variable is uninitialized
 
 # yarn
 
-cd /home/cubes/polaris
+(cd /home/cubes/polaris/polaris-tokens && yarn build)
+(cd /home/cubes/polaris/polaris-icons && yarn build)
+(cd /home/cubes/polaris/polaris-react && rm build -rf && npx tsc -b && npx rollup -c)
 
-(cd polaris-tokens && yarn build)
-(cd polaris-icons && yarn build)
-(cd polaris-react && rm build -rf && yarn build:react)
-
-mkdir -p ../cubes-admin/polaris-react/
-rm -rf ../cubes-admin/polaris-react/src/
-cp -r polaris-react/build/ts/src ../cubes-admin/polaris-react
-cp -r polaris-react/locales ../cubes-admin/polaris-react
-cp polaris-react/build/esm/styles.css ../cubes-admin/polaris-react
-(cd ../cubes-admin/polaris-react && npx tsc)
-node ./polaris-react/build-for-cubes.js
+mkdir -p ./polaris-react/
+rm -rf ./polaris-react/src/
+cp -r /home/cubes/polaris/polaris-react/build/ts/src ./polaris-react
+cp -r /home/cubes/polaris/polaris-react/locales ./polaris-react
+cp /home/cubes/polaris/polaris-react/build/esm/styles.css ./polaris-react
+(cd ./polaris-react && npx tsc)
+(cd ./polaris-react && node /home/cubes/polaris/polaris-react/build-for-cubes.js)

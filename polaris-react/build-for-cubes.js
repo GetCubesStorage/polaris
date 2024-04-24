@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 const { readFileSync, writeFileSync } = require("fs");
-const pkg = require("./package.json");
+const pkg = require("/home/cubes/polaris/polaris-react/package.json");
 
 Object.keys(pkg).forEach((k) => {
   [
@@ -20,4 +20,4 @@ Object.keys(pkg).forEach((k) => {
   ].includes(k) || delete pkg[k];
 });
 
-writeFileSync("../cubes-admin/polaris-react/package.json", JSON.stringify(pkg, null, 2));
+writeFileSync("package.json", JSON.stringify(pkg, null, 2));
