@@ -13,5 +13,6 @@ rm -rf ./polaris-react/src/
 cp -r /home/cubes/polaris/polaris-react/build/ts/src ./polaris-react
 cp -r /home/cubes/polaris/polaris-react/locales ./polaris-react
 cp /home/cubes/polaris/polaris-react/build/esm/styles.css ./polaris-react
+cat /home/cubes/polaris/polaris-react/build-for-cubes.tsconfig.json > ./polaris-react/tsconfig.json
 (cd ./polaris-react && npx tsc)
 (cd ./polaris-react && node /home/cubes/polaris/polaris-react/build-for-cubes.js)

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    // --declaration --emitDeclarationOnly --allowJs
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "types":[],
+  },
+  "include": ["./src/**/*.scss.js"]
+}
