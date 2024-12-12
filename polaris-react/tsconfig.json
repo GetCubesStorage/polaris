@@ -5,7 +5,7 @@
     "emitDeclarationOnly": false,
     "sourceMap": true,
     "sourceRoot": "/home/cubes/polaris/polaris-react",
-    "importsNotUsedAsValues": "error",
+    // "importsNotUsedAsValues": "error",
     "outDir": "build/ts",
     "rootDir": "./",
     "strictFunctionTypes": false,
