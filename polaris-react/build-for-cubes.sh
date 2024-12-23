@@ -2,6 +2,8 @@ set -x # print each command as it is executed
 set -e # exit if any line ends with a non-zero exit status
 set -u # exit script if a variable is uninitialized
 
+# /home/cubes/client3/projects
+
 # yarn
 
 (cd /home/cubes/polaris/polaris-tokens && yarn build)

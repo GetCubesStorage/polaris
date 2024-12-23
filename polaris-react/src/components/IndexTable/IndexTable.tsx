@@ -1088,11 +1088,34 @@ function IndexTableBase({
       );
 
       if (!sortToggleLabels || selectMode) {
-        return (
-          <div className={styles.SortableTableHeadingWithCustomMarkup}>
-            {sortMarkup}
-          </div>
-        );
+        if (heading.tooltipContent) {
+          return (
+            // Header text and sort icon have separate tooltips
+            <div
+              className={classNames(
+                styles.SortableTableHeadingWithCustomMarkup,
+                heading.paddingBlockEnd &&
+                  styles['TableHeading-extra-padding-right'],
+              )}
+              style={style}
+            >
+              <UnstyledButton {...defaultSortButtonProps}>
+                <Tooltip {...defaultHeaderTooltipProps}>
+                  {iconMarkup}
+                  <span className={styles.TableHeadingUnderline}>
+                    {headingContent}
+                  </span>
+                </Tooltip>
+              </UnstyledButton>
+            </div>
+          );
+        } else {
+          return (
+            <div className={styles.SortableTableHeadingWithCustomMarkup}>
+              {sortMarkup}
+            </div>
+          );
+        }
       }
 
       const tooltipDirection = isCurrentlySorted
